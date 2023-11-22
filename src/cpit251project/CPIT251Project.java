@@ -39,10 +39,15 @@ public class CPIT251Project {
 
             PrintInFile.println(file.toString());
             System.out.println("Succuessful added the idea! ");
-
-            file.ChangeFavoriteIdea();
-            PrintInFile.println(file.toString());
-
+    
+          String  FavIdea;
+          System.out.println("Do you w1ant to add idea to Favorite place (enter Y for yes or N for no) :");
+                        FavIdea = in.next();
+                        if (FavIdea.equalsIgnoreCase("Y")) {
+           file.ChangeFavoriteIdea();
+                        }
+                            file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+            PrintInFile.write(file.toString());
         }
 
         PrintInFile.close();
