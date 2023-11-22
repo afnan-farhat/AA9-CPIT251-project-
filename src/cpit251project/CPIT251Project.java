@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 
 public class CPIT251Project {
@@ -26,7 +27,19 @@ public class CPIT251Project {
     public static void main(String[] args) throws FileNotFoundException {
         
         Scanner in = new Scanner(System.in);
-        PrintWriter PrintInFile = new PrintWriter("Ideas");
+        PrintWriter PrintInFile = new PrintWriter("Ideas");  
+    try (PrintWriter printInFile = new PrintWriter("Ideas.txt")) {
+        // ... existing code ...
+
+        // Instead of using PrintInFile.write(), use PrintInFile.print() or PrintInFile.println()
+        // For example:
+        // PrintInFile.print(firstLine);
+        // PrintInFile.println(fileIdeas.get(indexFile).toString());
+
+    } catch (FileNotFoundException e) {
+        System.err.println("File not found: " + e.getMessage());
+    }
+
         
         String job;
         
@@ -63,7 +76,8 @@ public class CPIT251Project {
                             file = new CreateFile(IdeaName, desc, OwnerName);
                             
                             fileIdeas.add(file);
-                            PrintInFile.println(file.toString());
+                            PrintInFile.println(fileIdeas.toString());
+                       
                             System.out.println("Succuessful added the idea! ");
                         }
                     } else if (operationNum == 2) {
@@ -96,29 +110,43 @@ public class CPIT251Project {
                 case "investor":
                 case "INVESTOR":
                 case "2": {
-                    //Display all file in (Ideas File)
-                    for (int i = 0; i < fileIdeas.size(); i++) {
-                        System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
-                    }
+             
+                    int number;
+                    if (fileIdeas.isEmpty()) {
+                        System.out.println("the file is empty");
+                    } else {
 
-                    // select file number 
-                    System.out.println("Enter the number of file that you want to modify on it: ");
-                    int selectedFile = in.nextInt();
-                    int indexFile = selectedFile - 1;
+                        do {
+                            InvestorMenu();
+                            number = in.nextInt();
+                            //Display all file in (Ideas File)
 
-                    // add idea in favorite place
-                    System.out.println("Do you want to add idea to Favorite place (Enter Y for yes or N for no) :");
-                    FavIdea = in.next();
-                    if (FavIdea.equalsIgnoreCase("Y")) {
-                        //file.ChangeFavoriteIdea();
-                        fileIdeas.get(indexFile).ChangeFavoriteIdea();
-                        System.out.println("Succuessful added in favorite place");
+                            if (number == 1) {
+                                for (int i = 0; i < fileIdeas.size(); i++) {
+                                    System.out.println("File number " + (i + 1) + "\t" + fileIdeas.get(i).getIdeaName());
+
+                                }
+                                // select file number 
+                                System.out.println("Enter the number of file that you want to add to favorite: ");
+                                int selectedFile = in.nextInt();
+                                int indexFile = selectedFile - 1;
+
+                               ;
+                                fileIdeas.get(indexFile).ChangeFavoriteIdea();
+                                break;
+                            }
+                            if (number == 2) {
+                                break;
+                            }
+
+                            file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+                            PrintInFile.write(file.toString());
+                        } while (number != 2);
                     }
-                    file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
-                    PrintInFile.write(file.toString());
-                    
+                  
                     break;
                 }
+                
                 case "Staff":
                 case "staff":
                 case "STAFF":
