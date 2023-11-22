@@ -16,22 +16,20 @@ public class CPIT251Project {
     private static ArrayList<CreateFile> fileIdeas = new ArrayList<>();
     private static CreateFile file = new CreateFile();
     private static String OwnerName;
-
     private static String desc;
     private static String IdeaName;
     private static String FavIdea;
     private static String Accept;
     private static String Reject;
+    private static int NoFileIdea;
 
     public static void main(String[] args) throws FileNotFoundException {
 
         Scanner in = new Scanner(System.in);
         PrintWriter PrintInFile = new PrintWriter("Ideas");
 
-        System.out.println("Enter the number of file idea that you want to added: ");
-        int NoFileIdea = in.nextInt();
-
         String job;
+
         do {
 
             showMenu();
@@ -42,25 +40,37 @@ public class CPIT251Project {
                 case "owner":
                 case "1": {
 
-                    for (int i = 1; i <= NoFileIdea; i++) {
-                        String firstLine = "File number: " + i;
-                        PrintInFile.write(firstLine);
-                        System.out.println(firstLine);
+                    OwnerMenu();
+                    int Operation = in.nextInt();
 
-                        System.out.println("Enter your name as owner idea: ");
-                        OwnerName = in.next();
-                        System.out.println("Enter the idea name: ");
-                        IdeaName = in.next();
-                        System.out.println("Enter describtion of idea: ");
-                        desc = in.next();
+                    if (Operation == 1) {
 
-                        file = new CreateFile(IdeaName, desc, OwnerName);
+                        System.out.println("Enter the number of file idea that you want to added: ");
+                        NoFileIdea = in.nextInt();
+                        for (int i = 1; i <= NoFileIdea; i++) {
+                            String firstLine = "File number: " + i;
+                            PrintInFile.write(firstLine);
+                            System.out.println(firstLine);
 
-                        fileIdeas.add(file);
-                        PrintInFile.println(file.toString());
-                        System.out.println("Succuessful added the idea! ");
+                            System.out.println("Enter your name as owner idea: ");
+                            OwnerName = in.next();
+                            System.out.println("Enter the idea name: ");
+                            IdeaName = in.next();
+                            System.out.println("Enter describtion of idea: ");
+                            desc = in.next();
+
+                            file = new CreateFile(IdeaName, desc, OwnerName);
+
+                            fileIdeas.add(file);
+                            PrintInFile.println(file.toString());
+                            System.out.println("Succuessful added the idea! ");
+                        }
+                    } else if (Operation == 2) {
+
+                        fileIdeas.remove(file);
+                    } else if (Operation == 3) {
+                        System.exit(0);
                     }
-                    //fileIdeas.remove(file);
 
                     break;
 
@@ -99,7 +109,6 @@ public class CPIT251Project {
 //                    }
 //                    file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
 //                    PrintInFile.write(file.toString());
-
                     break;
                 }
                 case "Staff":
@@ -125,7 +134,7 @@ public class CPIT251Project {
                     }
                     file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
                     PrintInFile.write(file.toString());
-                    
+
 //                    // change state to reject
 //                    System.out.print("Do you want to change the idea state to reject (if Yes enter Y otherwise enter N for No): ");
 //                    Reject = in.next();
