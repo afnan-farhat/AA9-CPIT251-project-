@@ -14,6 +14,11 @@ import java.util.Scanner;
 public class CPIT251Project {
 
     private static ArrayList<CreateFile> fileIdeas = new ArrayList<>();
+    private static CreateFile file = new CreateFile();
+    private static String OwnerName;
+
+    private static String desc;
+    private static String IdeaName;
     private static String FavIdea;
     private static String Accept;
 
@@ -24,54 +29,94 @@ public class CPIT251Project {
 
         System.out.println("Enter the number of file idea that you want to added: ");
         int NoFileIdea = in.nextInt();
-        
-        int count = 1;
 
+     
+
+        String job;
+        //} while(!(FavIdea.equalsIgnoreCase("y")&& Accept.equalsIgnoreCase("yes") ));
         do {
-            String firstLine = "File number: " + count;
 
-            PrintInFile.write(firstLine);
-            System.out.println(firstLine);
+            showMenu();
+            job = in.next();
 
-            System.out.println("Enter your name as owner idea: ");
-            String OwnerName = in.next();
-            System.out.println("Enter the idea name: ");
-            String IdeaName = in.next();
-            System.out.println("Enter describtion of idea: ");
-            String desc = in.next();
+            switch (job) {
+                case "Owner": {
+                    
+                    for(int i=1; i<=NoFileIdea; i++){
+                    String firstLine = "File number: " + i;
+                    PrintInFile.write(firstLine);
+                    System.out.println(firstLine);
 
-            CreateFile file = new CreateFile(IdeaName, desc, OwnerName);
-            fileIdeas.add(file);
+                    System.out.println("Enter your name as owner idea: ");
+                    OwnerName = in.next();
+                    System.out.println("Enter the idea name: ");
+                    IdeaName = in.next();
+                    System.out.println("Enter describtion of idea: ");
+                    desc = in.next();
 
-            PrintInFile.println(file.toString());
-            System.out.println("Succuessful added the idea! ");
+                    file = new CreateFile(IdeaName, desc, OwnerName);
 
-            System.out.println("Do you want to add idea to Favorite place (Enter Y for yes or N for no) :");
-            FavIdea = in.next();
-            if (FavIdea.equalsIgnoreCase("Y")) {
-                file.ChangeFavoriteIdea();
-                System.out.println("Succuessful added in favorite place");
+                    fileIdeas.add(file);
+                    PrintInFile.println(file.toString());
+                    System.out.println("Succuessful added the idea! ");
+                    }
+                    fileIdeas.remove(file);
+
+                    break;
+
+                }
+                case "Investor": {
+                    System.out.println("Do you want to add idea to Favorite place (Enter Y for yes or N for no) :");
+                    FavIdea = in.next();
+                    if (FavIdea.equalsIgnoreCase("Y")) {
+                        file.ChangeFavoriteIdea();
+                        System.out.println("Succuessful added in favorite place");
+                    }
+                    file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+                    PrintInFile.write(file.toString());
+
+                    break;
+                }
+                case "Staff": {
+
+                    System.out.print("Do you want to change the idea state to accept (if Yes enter Y otherwise enter N for No): ");
+                    Accept = in.next();
+
+                    if (Accept.equalsIgnoreCase("Y")) {
+                        file.ChangeStateIdea();
+                        System.out.println("Succuessful added in accepted file");
+                    }
+                    file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+                    PrintInFile.write(file.toString());
+                    break;
+                }
+                case "Stop": {
+                    System.exit(0);
+                }
+                default:
+                    break;
             }
 
-            file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
-            PrintInFile.write(file.toString());
-
-            System.out.print("Do you want to change the idea state to accept (if Yes enter Y otherwise enter N for No): ");
-            Accept = in.next();
-
-            if (Accept.equalsIgnoreCase("Y")) {
-                file.ChangeStateIdea();
-                System.out.println("Succuessful added in accepted file");
-            }
-            file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
-            PrintInFile.write(file.toString());
             
-            ++count;
-        } while (NoFileIdea != count);
+        } while (!"".equals(job));
 
         PrintInFile.close();
         PrintInFile.flush();
         in.close();
+
+    }
+
+    public static void showMenu() {
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|------      JOBS     ------|");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|   1. owner                                    |");
+        System.out.println("|   2. investor                                 |");
+        System.out.println("|   3. staff                                    |");
+        System.out.println("|   4. stop                                     |");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println();
+        System.out.print("> Please enter your job: ");
 
     }
 

@@ -17,6 +17,9 @@ public class CreateFile {
     private boolean favoriteState;
     private String state;
 
+    CreateFile() {
+    }
+
     CreateFile(String IdeaName, String description, String OwnerName) {
         this.IdeaName = IdeaName;
         this.description = description;
@@ -24,8 +27,8 @@ public class CreateFile {
         this.favoriteState = false;
         this.state = "waiting";
     }
-    
-     CreateFile(String IdeaName, String description, String OwnerName, boolean favoriteState, String state) {
+
+    CreateFile(String IdeaName, String description, String OwnerName, boolean favoriteState, String state) {
         this.IdeaName = IdeaName;
         this.description = description;
         this.OwnerName = OwnerName;
@@ -72,26 +75,29 @@ public class CreateFile {
     public void setState(String state) {
         this.state = state;
     }
+
     public void ChangeFavoriteIdea() {
-        if (getFavoriteState()== false) {
+        if (getFavoriteState() == false) {
             setFavoriteState(true);
         } else {
             System.out.println("Already in favorite place");
         }
     }
-    
-    public  void ChangeStateIdea() {
+
+    public void ChangeStateIdea() {
         if (getState().equalsIgnoreCase("waiting")) {
             setState("Accept");
-        } else
-             System.out.println("The idea already Accepted");
+        } else if (getState().equalsIgnoreCase("Accept")) {
+            System.out.println("The idea has been accepted");
+        } else {
+            System.out.println("The idea wss Reject");
+        }
     }
-    
-    
+
     @Override
     public String toString() {
-        return "Idea: "+IdeaName+"\n"+"description: "+description+"\nOwnername: "+OwnerName+"\nState: "+
-                state +"\nFavorite: "+favoriteState+ "\n";
+        return "Idea: " + IdeaName + "\n" + "description: " + description + "\nOwnername: " + OwnerName + "\nState: "
+                + state + "\nFavorite: " + favoriteState + "\n";
     }
 
 }
