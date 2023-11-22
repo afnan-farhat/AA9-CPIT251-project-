@@ -21,6 +21,7 @@ public class CPIT251Project {
     private static String IdeaName;
     private static String FavIdea;
     private static String Accept;
+    private static String Reject;
 
     public static void main(String[] args) throws FileNotFoundException {
 
@@ -30,55 +31,91 @@ public class CPIT251Project {
         System.out.println("Enter the number of file idea that you want to added: ");
         int NoFileIdea = in.nextInt();
 
-     
-
         String job;
-        //} while(!(FavIdea.equalsIgnoreCase("y")&& Accept.equalsIgnoreCase("yes") ));
         do {
 
             showMenu();
             job = in.next();
 
             switch (job) {
-                case "Owner": {
-                    
-                    for(int i=1; i<=NoFileIdea; i++){
-                    String firstLine = "File number: " + i;
-                    PrintInFile.write(firstLine);
-                    System.out.println(firstLine);
+                case "Owner":
+                case "owner":
+                case "1": {
 
-                    System.out.println("Enter your name as owner idea: ");
-                    OwnerName = in.next();
-                    System.out.println("Enter the idea name: ");
-                    IdeaName = in.next();
-                    System.out.println("Enter describtion of idea: ");
-                    desc = in.next();
+                    for (int i = 1; i <= NoFileIdea; i++) {
+                        String firstLine = "File number: " + i;
+                        PrintInFile.write(firstLine);
+                        System.out.println(firstLine);
 
-                    file = new CreateFile(IdeaName, desc, OwnerName);
+                        System.out.println("Enter your name as owner idea: ");
+                        OwnerName = in.next();
+                        System.out.println("Enter the idea name: ");
+                        IdeaName = in.next();
+                        System.out.println("Enter describtion of idea: ");
+                        desc = in.next();
 
-                    fileIdeas.add(file);
-                    PrintInFile.println(file.toString());
-                    System.out.println("Succuessful added the idea! ");
+                        file = new CreateFile(IdeaName, desc, OwnerName);
+
+                        fileIdeas.add(file);
+                        PrintInFile.println(file.toString());
+                        System.out.println("Succuessful added the idea! ");
                     }
-                    fileIdeas.remove(file);
+                    //fileIdeas.remove(file);
 
                     break;
 
                 }
-                case "Investor": {
+                case "Investor":
+                case "investor":
+                case "2": {
+                    //Display all file in (Ideas File)
+                    for (int i = 0; i < NoFileIdea; i++) {
+                        System.out.println("File number " + (i + 1) + "\t" + fileIdeas.get(i).getIdeaName());
+                    }
+
+                    // select file number 
+                    System.out.println("Enter the number of file that you want to modify on it: ");
+                    int selectedFile = in.nextInt();
+                    int indexFile = selectedFile - 1;
+
+                    // add favorite place
                     System.out.println("Do you want to add idea to Favorite place (Enter Y for yes or N for no) :");
                     FavIdea = in.next();
                     if (FavIdea.equalsIgnoreCase("Y")) {
-                        file.ChangeFavoriteIdea();
+                        //file.ChangeFavoriteIdea();
+                        fileIdeas.get(indexFile).ChangeFavoriteIdea();
                         System.out.println("Succuessful added in favorite place");
                     }
                     file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
                     PrintInFile.write(file.toString());
 
+//                    // remove from favorite place 
+//                    System.out.println("Do you want to delete the idea from Favorite place (Enter Y for yes or N for no) :");
+//                    FavIdea = in.next();
+//                    if (FavIdea.equalsIgnoreCase("Y")) {
+//                        //file.ChangeFavoriteIdea();
+//                        fileIdeas.get(indexFile).ChangeFavoriteIdea();
+//                        System.out.println("Succuessful added in favorite place");
+//                    }
+//                    file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+//                    PrintInFile.write(file.toString());
+
                     break;
                 }
-                case "Staff": {
+                case "Staff":
+                case "staff":
+                case "3": {
+                    //Display all file in (Ideas File)
+                    for (int i = 0; i < NoFileIdea; i++) {
+                        System.out.println("File number " + (i + 1) + "\t" + fileIdeas.get(i).getIdeaName());
+                    }
 
+                    // select file number 
+                    System.out.println("Enter the number of file that you want to modify on it: ");
+                    int selectedFile = in.nextInt();
+                    int indexFile = selectedFile - 1;
+
+                    // change state to accept
                     System.out.print("Do you want to change the idea state to accept (if Yes enter Y otherwise enter N for No): ");
                     Accept = in.next();
 
@@ -88,16 +125,28 @@ public class CPIT251Project {
                     }
                     file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
                     PrintInFile.write(file.toString());
+                    
+//                    // change state to reject
+//                    System.out.print("Do you want to change the idea state to reject (if Yes enter Y otherwise enter N for No): ");
+//                    Reject = in.next();
+//
+//                    if (Reject.equalsIgnoreCase("Y")) {
+//                        file.ChangeStateIdea();
+//                        System.out.println("Succuessful added in rejected file");
+//                    }
+//                    file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+//                    PrintInFile.write(file.toString());
                     break;
                 }
-                case "Stop": {
+                case "Stop":
+                case "stop":
+                case "4": {
                     System.exit(0);
                 }
                 default:
                     break;
             }
 
-            
         } while (!"".equals(job));
 
         PrintInFile.close();
@@ -117,6 +166,45 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter your job: ");
+
+    }
+
+    public static void OwnerMenu() {
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|------      Owner Operation     ------|");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|   1. add file idea                                    |");
+        System.out.println("|   2. delete                                  |");
+        System.out.println("|   3. quite                                    |");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println();
+        System.out.print("> Please enter number of operation: ");
+
+    }
+
+    public static void InvestorMenu() {
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|------      Investor Operation     ------|");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|   1. add in favorite place                    |");
+        System.out.println("|   2. delete in favorite place                 |");
+        System.out.println("|   3. quite                                    |");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println();
+        System.out.print("> Please enter number of operation: ");
+
+    }
+
+    public static void StaffMenu() {
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|------      Staff Operation     ------|");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|   1. change state to accept                   |");
+        System.out.println("|   2. change state to reject                   |");
+        System.out.println("|   3. quite                                    |");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println();
+        System.out.print("> Please enter number of operation: ");
 
     }
 
