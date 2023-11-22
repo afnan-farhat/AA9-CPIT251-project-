@@ -17,6 +17,8 @@ public class CPIT285Project {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("Genius Growth - CPIT251 Project");
+        System.out.println("Fali Junit test");
+
     }
-    
+
 }
