@@ -16,18 +16,18 @@ public class CPIT251Project {
     private static ArrayList<CreateFile> fileIdeas = new ArrayList<>();
 
     public static void main(String[] args) throws FileNotFoundException {
-
+  String FavIdea;
+   
         // TODO code application logic here
-        System.out.println("Genius Growth - CPIT251 Project");
-        System.out.println("Fali Junit test");
+     
 
         Scanner in = new Scanner(System.in);
         PrintWriter PrintInFile = new PrintWriter("Ideas");
 
-        System.out.println("Enter the number od file idea that you want to added: ");
+        System.out.println("Enter the number of file idea that you want to added: ");
         int NoFileIdea = in.nextInt();
 
-        for (int i = 0; i < NoFileIdea; i++) {
+       do {
             System.out.println("Enter your name as owner idea: ");
             String OwnerName = in.next();
             System.out.println("Enter the idea name: ");
@@ -40,7 +40,6 @@ public class CPIT251Project {
             PrintInFile.println(file.toString());
             System.out.println("Succuessful added the idea! ");
     
-          String  FavIdea;
           System.out.println("Do you w1ant to add idea to Favorite place (enter Y for yes or N for no) :");
                         FavIdea = in.next();
                         if (FavIdea.equalsIgnoreCase("Y")) {
@@ -48,7 +47,8 @@ public class CPIT251Project {
                         }
                             file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
             PrintInFile.write(file.toString());
-        }
+           --NoFileIdea;
+        }while(NoFileIdea!=0);
 
         PrintInFile.close();
         PrintInFile.flush();
