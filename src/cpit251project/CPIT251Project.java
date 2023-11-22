@@ -23,21 +23,25 @@ public class CPIT251Project {
 
         Scanner in = new Scanner(System.in);
         PrintWriter PrintInFile = new PrintWriter("Ideas");
-        System.out.println("Enter your name as owner idea: ");
-        String OwnerName = in.next();
-        System.out.println("Enter the idea name: ");
-        String IdeaName = in.next();
-        System.out.println("Enter describtion of idea: ");
-        String desc = in.next();
-        
-        CreateFile file=new CreateFile(IdeaName,desc,OwnerName);
-       PrintInFile.write("Idea: "+IdeaName+"\n"+"description: "+desc+"\nOwnername: "+OwnerName+"\n State: "+file.getState() +"\n Favorite: "+file.getFavoriteState());
 
+        System.out.println("Enter the number od file idea that you want to added: ");
+        int NoFileIdea = in.nextInt();
 
-  
-        
-        System.out.println("Succuessful added the idea! ");
-        
+        for (int i = 0; i < NoFileIdea; i++) {
+            System.out.println("Enter your name as owner idea: ");
+            String OwnerName = in.next();
+            System.out.println("Enter the idea name: ");
+            String IdeaName = in.next();
+            System.out.println("Enter describtion of idea: ");
+            String desc = in.next();
+
+            CreateFile file = new CreateFile(IdeaName, desc, OwnerName);
+
+            PrintInFile.println(file.toString());
+            System.out.println("Succuessful added the idea! ");
+
+        }
+
         PrintInFile.close();
         PrintInFile.flush();
         in.close();
