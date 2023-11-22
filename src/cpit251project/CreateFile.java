@@ -79,6 +79,16 @@ public class CreateFile {
             System.out.println("Already in favorite place");
         }
     }
+    
+    public  void ChangeStateIdea() {
+        if (getState().equalsIgnoreCase("waiting")) {
+            setState("Accept");
+        } else
+             System.out.println("The idea already Accepted");
+    }
+    
+    
+    
 
     @Override
     public String toString() {

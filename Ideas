@@ -1,22 +1,16 @@
-2-Idea: h
-description: h
-Ownername: h
+Idea: 2
+description: 3
+Ownername: 1
 State: waiting
 Favorite: false
 
-Idea: h
-description: h
-Ownername: h
+Idea: 2
+description: 3
+Ownername: 1
 State: waiting
 Favorite: true
-1-Idea: j
-description: j
-Ownername: j
-State: waiting
-Favorite: false
-
-Idea: j
-description: j
-Ownername: j
-State: waiting
-Favorite: false
+Idea: 2
+description: 3
+Ownername: 1
+State: Accept
+Favorite: true

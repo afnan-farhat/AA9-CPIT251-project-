@@ -17,7 +17,7 @@ public class CPIT251Project {
 
     public static void main(String[] args) throws FileNotFoundException {
   String FavIdea;
-   
+   String Accept;
         // TODO code application logic here
      
 
@@ -47,6 +47,15 @@ public class CPIT251Project {
                         }
                             file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
             PrintInFile.write(file.toString());
+            
+             System.out.print("Dose the idea accepted?(if Yes enter YES)");
+                        Accept = in.next();
+
+                        if (Accept.equalsIgnoreCase("yes")) {
+                            file.ChangeStateIdea();
+                        }
+                        file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+                        PrintInFile.write(file.toString()); 
            --NoFileIdea;
         }while(NoFileIdea!=0);
 
