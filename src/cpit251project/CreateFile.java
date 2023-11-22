@@ -88,8 +88,6 @@ public class CreateFile {
     }
     
     
-    
-
     @Override
     public String toString() {
         return "Idea: "+IdeaName+"\n"+"description: "+description+"\nOwnername: "+OwnerName+"\nState: "+
