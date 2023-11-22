@@ -18,7 +18,6 @@ public class CPIT285Project {
         // TODO code application logic here
         System.out.println("Genius Growth - CPIT251 Project");
         System.out.println("Fali Junit test");
-
     }
 
 }
