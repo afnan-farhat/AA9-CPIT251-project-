@@ -40,6 +40,9 @@ public class CPIT251Project {
             PrintInFile.println(file.toString());
             System.out.println("Succuessful added the idea! ");
 
+            file.ChangeFavoriteIdea();
+            PrintInFile.println(file.toString());
+
         }
 
         PrintInFile.close();

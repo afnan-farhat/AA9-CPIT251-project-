@@ -72,7 +72,14 @@ public class CreateFile {
     public void setState(String state) {
         this.state = state;
     }
-    
+    public void ChangeFavoriteIdea() {
+        if (getFavoriteState()== false) {
+            setFavoriteState(true);
+        } else {
+            System.out.println("Already in favorite place");
+        }
+    }
+
     @Override
     public String toString() {
         return "Idea: "+IdeaName+"\n"+"description: "+description+"\nOwnername: "+OwnerName+"\nState: "+
