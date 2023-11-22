@@ -30,13 +30,16 @@ public class CPIT251Project {
         System.out.println("Enter describtion of idea: ");
         String desc = in.next();
         
-        PrintInFile.print("Owner name: " + OwnerName + "\n");
-        PrintInFile.print("Idea name: " + IdeaName + "\n");
-        PrintInFile.print("Idea Describtion: " + desc );
+        CreateFile file=new CreateFile(IdeaName,desc,OwnerName);
+       PrintInFile.write("Idea: "+IdeaName+"\n"+"description: "+desc+"\nOwnername: "+OwnerName+"\n State: "+file.getState() +"\n Favorite: "+file.getFavoriteState());
+
+
+  
         
         System.out.println("Succuessful added the idea! ");
         
         PrintInFile.close();
+        PrintInFile.flush();
         in.close();
 
     }
