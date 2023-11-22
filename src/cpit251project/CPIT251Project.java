@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class CPIT251Project {
-
+    
     private static ArrayList<CreateFile> fileIdeas = new ArrayList<>();
     private static CreateFile file = new CreateFile();
     private static String OwnerName;
@@ -21,51 +21,52 @@ public class CPIT251Project {
     private static String FavIdea;
     private static String Acceptance;
     private static int NoFileIdea;
-
+    private static int operationNum;
+    
     public static void main(String[] args) throws FileNotFoundException {
-
+        
         Scanner in = new Scanner(System.in);
         PrintWriter PrintInFile = new PrintWriter("Ideas");
-
+        
         String job;
-
+        
         do {
-
+            
             showMenu();
             job = in.next();
-
+            
             switch (job) {
                 case "Owner":
                 case "owner":
                 case "OWNER":
                 case "1": {
-
+                    
                     OwnerMenu();
-                    int Operation = in.nextInt();
-
-                    if (Operation == 1) {
-
+                    operationNum = in.nextInt();
+                    
+                    if (operationNum == 1) {
+                        
                         System.out.println("Enter the number of file idea that you want to added: ");
                         NoFileIdea = in.nextInt();
                         for (int i = 1; i <= NoFileIdea; i++) {
                             String firstLine = "File number: " + i;
                             PrintInFile.write(firstLine);
                             System.out.println(firstLine);
-
+                            
                             System.out.println("Enter your name as owner idea: ");
                             OwnerName = in.next();
                             System.out.println("Enter the idea name: ");
                             IdeaName = in.next();
                             System.out.println("Enter describtion of idea: ");
                             desc = in.next();
-
+                            
                             file = new CreateFile(IdeaName, desc, OwnerName);
-
+                            
                             fileIdeas.add(file);
                             PrintInFile.println(file.toString());
                             System.out.println("Succuessful added the idea! ");
                         }
-                    } else if (Operation == 2) {
+                    } else if (operationNum == 2) {
                         if (fileIdeas.isEmpty()) {
                             System.out.println("the file is empty");
                         } else {
@@ -79,17 +80,17 @@ public class CPIT251Project {
                             System.out.println("Enter the number of file that you want to delete it : ");
                             int selectedFile = in.nextInt();
                             int indexFile = selectedFile - 1;
-
+                            
                             fileIdeas.remove(indexFile);
                             System.out.println("Succuessful deleted the file idea!");
-
+                            
                         }
-                    } else if (Operation == 3) {
+                    } else if (operationNum == 3) {
                         break;
                     }
-
+                    
                     break;
-
+                    
                 }
                 case "Investor":
                 case "investor":
@@ -113,38 +114,40 @@ public class CPIT251Project {
                         fileIdeas.get(indexFile).ChangeFavoriteIdea();
                         System.out.println("Succuessful added in favorite place");
                     }
-                    file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+                    file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
                     PrintInFile.write(file.toString());
-
+                    
                     break;
                 }
                 case "Staff":
                 case "staff":
                 case "STAFF":
                 case "3": {
-                     //Display all file in (Ideas File)
+                    StaffMenu();
+                    operationNum = in.nextInt();
+                    
+                    //Display all file in (Ideas File)
                     for (int i = 0; i < fileIdeas.size(); i++) {
                         System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
                     }
                     System.out.println("Enter the number of file that you want: ");
                     int selectedFile = in.nextInt();
                     int indexFile = selectedFile - 1;
-                    StaffMenu();
-                    int OperationNum = in.nextInt();
-
-                    if (OperationNum == 1) {
+                    
+                    
+                    if (operationNum == 1) {
                         System.out.print("Do you want to change the idea state to accept (if Yes enter Y): ");
                         Acceptance = in.next();
                         if (Acceptance.equalsIgnoreCase("Y")) {
-                            file.ChangeStateIdea();
+                            fileIdeas.get(indexFile).ChangeStateIdea();
                             System.out.println("Succuessful added in accepted file");
                         }
-                        file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+                        file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
                         PrintInFile.write(file.toString());
                     } else {
                         break;
                     }
-
+                    break;
                 }
                 case "Stop":
                 case "stop":
@@ -155,15 +158,15 @@ public class CPIT251Project {
                 default:
                     break;
             }
-
+            
         } while (!"".equals(job));
-
+        
         PrintInFile.close();
         PrintInFile.flush();
         in.close();
-
+        
     }
-
+    
     public static void showMenu() {
         System.out.println("|-----------------------------------------------|");
         System.out.println("|------                JOBS               ------|");
@@ -175,9 +178,9 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter your job: ");
-
+        
     }
-
+    
     public static void OwnerMenu() {
         System.out.println("|-----------------------------------------------|");
         System.out.println("|------           OWNER OPERATIONS        ------|");
@@ -188,9 +191,9 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter number of operation for OWNER: ");
-
+        
     }
-
+    
     public static void InvestorMenu() {
         System.out.println("|-----------------------------------------------|");
         System.out.println("|------        INVESTOR OPERATIONS        ------|");
@@ -200,9 +203,9 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter number of operation for INVESTOR: ");
-
+        
     }
-
+    
     public static void StaffMenu() {
         System.out.println("|-----------------------------------------------|");
         System.out.println("|------            STAFF OPERATIONS       ------|");
@@ -212,7 +215,7 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter number of operation for STAFF: ");
-
+        
     }
-
+    
 }
