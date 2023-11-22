@@ -79,8 +79,9 @@ public class CreateFile {
     public void ChangeFavoriteIdea() {
         if (getFavoriteState() == false) {
             setFavoriteState(true);
+            System.out.println("\n Succuessful added in favorite place \n");
         } else {
-            System.out.println("Already in favorite place");
+            System.out.println("\n Already in favorite place \n");
         }
     }
 

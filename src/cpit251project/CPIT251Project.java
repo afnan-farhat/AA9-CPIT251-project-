@@ -67,8 +67,24 @@ public class CPIT251Project {
                             System.out.println("Succuessful added the idea! ");
                         }
                     } else if (Operation == 2) {
-                        fileIdeas.remove(file);
-                        System.out.println("Succuessful deleted the file idea!");
+                        if (fileIdeas.isEmpty()) {
+                            System.out.println("the file is empty");
+                        } else {
+
+                            //Display all file in (Ideas File)
+                            for (int i = 0; i < fileIdeas.size(); i++) {
+                                System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
+                            }
+
+                            // select file number 
+                            System.out.println("Enter the number of file that you want to delete it : ");
+                            int selectedFile = in.nextInt();
+                            int indexFile = selectedFile - 1;
+
+                            fileIdeas.remove(indexFile);
+                            System.out.println("Succuessful deleted the file idea!");
+
+                        }
                     } else if (Operation == 3) {
                         break;
                     }
@@ -81,7 +97,7 @@ public class CPIT251Project {
                 case "INVESTOR":
                 case "2": {
                     //Display all file in (Ideas File)
-                    for (int i = 0; i < NoFileIdea; i++) {
+                    for (int i = 0; i < fileIdeas.size(); i++) {
                         System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
                     }
 
@@ -108,7 +124,7 @@ public class CPIT251Project {
                 case "STAFF":
                 case "3": {
                     //Display all file in (Ideas File)
-                    for (int i = 0; i < NoFileIdea; i++) {
+                    for (int i = 0; i < fileIdeas.size(); i++) {
                         System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
                     }
 
