@@ -19,8 +19,7 @@ public class CPIT251Project {
     private static String desc;
     private static String IdeaName;
     private static String FavIdea;
-    private static String Accept;
-    private static String Reject;
+    private static String Acceptance;
     private static int NoFileIdea;
 
     public static void main(String[] args) throws FileNotFoundException {
@@ -123,28 +122,29 @@ public class CPIT251Project {
                 case "staff":
                 case "STAFF":
                 case "3": {
-                    //Display all file in (Ideas File)
+                     //Display all file in (Ideas File)
                     for (int i = 0; i < fileIdeas.size(); i++) {
                         System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
                     }
-
-                    // select file number 
-                    System.out.println("Enter the number of file that you want to modify on it: ");
+                    System.out.println("Enter the number of file that you want: ");
                     int selectedFile = in.nextInt();
                     int indexFile = selectedFile - 1;
+                    StaffMenu();
+                    int OperationNum = in.nextInt();
 
-                    // change state to accept
-                    System.out.print("Do you want to change the idea state to accept (if Yes enter Y otherwise enter N for No): ");
-                    Accept = in.next();
-
-                    if (Accept.equalsIgnoreCase("Y")) {
-                        file.ChangeStateIdea();
-                        System.out.println("Succuessful added in accepted file");
+                    if (OperationNum == 1) {
+                        System.out.print("Do you want to change the idea state to accept (if Yes enter Y): ");
+                        Acceptance = in.next();
+                        if (Acceptance.equalsIgnoreCase("Y")) {
+                            file.ChangeStateIdea();
+                            System.out.println("Succuessful added in accepted file");
+                        }
+                        file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+                        PrintInFile.write(file.toString());
+                    } else {
+                        break;
                     }
-                    file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
-                    PrintInFile.write(file.toString());
 
-                    break;
                 }
                 case "Stop":
                 case "stop":
