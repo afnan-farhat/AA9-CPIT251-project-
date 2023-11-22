@@ -5,7 +5,6 @@
  */
 package cpit251project;
 
-import cpit285project.CPIT251Project;
 import java.io.FileNotFoundException;
 import org.junit.After;
 import org.junit.AfterClass;
