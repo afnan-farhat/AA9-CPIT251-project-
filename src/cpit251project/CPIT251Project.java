@@ -68,7 +68,7 @@ public class CPIT251Project {
                         }
                     } else if (Operation == 2) {
                         fileIdeas.remove(file);
-                        System.out.println("Succuessful deleted the file idea! ");
+                        System.out.println("Succuessful deleted the file idea!");
                     } else if (Operation == 3) {
                         break;
                     }
