@@ -124,6 +124,7 @@ public class CPIT251ProjectTest {
         assertSame(FAV_IDEA.getFavoriteState(), ExpectedValue);
 
     }
+    
 
     /**
      * Test of Acceptance method, of class CPIT251Project.
