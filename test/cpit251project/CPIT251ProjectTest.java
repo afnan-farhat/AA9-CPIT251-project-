@@ -129,14 +129,33 @@ public class CPIT251ProjectTest {
     /**
      * Test of Acceptance method, of class CPIT251Project.
      */
-    @Test
-    public void testAcceptance() {
-        System.out.println("Acceptance");
-        int operationNum = 0;
-        Scanner in = null;
-        CPIT251Project.Acceptance(operationNum, in);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+      @Test
+    public void testAcceptance_IsWaiting() {
+
+        System.out.println("ChangeStateIdea"); CreateFile IDEAinfo = new CreateFile("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
+                + " savor top-notch coffee, and indulge in a variety of delightful treats. Our cafe is the perfect blend of good vibes and seamless conversations.");;
+        String currentState = IDEAinfo.getState();
+        String expectCurrentState = "waiting";
+        assertEquals(currentState, expectCurrentState, "waiting");
+
     }
+
+    @Test
+    public void testAcceptance_ChangeAcceptedState() {
+        System.out.println("ChangeStateIdea");
+
+        CreateFile IDEAinfo = new CreateFile("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
+                + " savor top-notch coffee, and indulge in a variety of delightful treats. Our cafe is the perfect blend of good vibes and seamless conversations.");;
+
+        IDEAinfo.ChangeStateIdea();
+        String result = IDEAinfo.getState();
+        String expResult = "Accept";
+
+        assertEquals(expResult, result, "Accept");
+    }
+
+
 
 }
