@@ -27,127 +27,112 @@ public class CPIT251Project {
     public static void main(String[] args) throws FileNotFoundException {
 
         Scanner in = new Scanner(System.in);
-        PrintWriter PrintInFile = new PrintWriter("Ideas");
-        try (PrintWriter printInFile = new PrintWriter("Ideas.txt")) {
-            // ... existing code ...
+        PrintWriter PrintInFile = new PrintWriter("Ideas.txt");
 
-            // Instead of using PrintInFile.write(), use PrintInFile.print() or PrintInFile.println()
-            // For example:
-            // PrintInFile.print(firstLine);
-            // PrintInFile.println(fileIdeas.get(indexFile).toString());
-            String job;
+        String job;
 
-            do {
+        do {
 
-                showMenu();
-                job = in.next();
+            showMenu();
+            job = in.next();
 
-                switch (job) {
-                    case "Owner":
-                    case "owner":
-                    case "OWNER":
-                    case "1": {
-                        OwnerMenu();
-                        operationNum = in.nextInt();
-                        if (operationNum == 1) {
-                            SubmitFileIdea(in, printInFile);
+            switch (job) {
+                case "Owner":
+                case "owner":
+                case "OWNER":
+                case "1": {
+                    OwnerMenu();
+                    operationNum = in.nextInt();
+                    if (operationNum == 1) {
+                        SubmitFileIdea(in, PrintInFile);
 
-                        } else if (operationNum == 2) {
-                            DeleteFileIdea(in, printInFile); // call DeleteFileIdea method
+                    } else if (operationNum == 2) {
+                        DeleteFileIdea(in, PrintInFile); // call DeleteFileIdea method
 
-                        } else if (operationNum == 3) {
-                            break;
-                        }
+                    } else if (operationNum == 3) {
 
-                        break;
-                    }
-                    case "Investor":
-                    case "investor":
-                    case "INVESTOR":
-                    case "2": {
-
-                        int number;
-                        if (fileIdeas.isEmpty()) {
-                            System.out.println("the file is empty");
-                        } else {
-
-                            do {
-                                InvestorMenu();
-                                number = in.nextInt();
-                                //Display all file in (Ideas File)
-
-                                if (number == 1) {
-                                    for (int i = 0; i < fileIdeas.size(); i++) {
-                                        System.out.println("File number " + (i + 1) + "\t" + fileIdeas.get(i).getIdeaName());
-
-                                    }
-                                    // select file number 
-                                    System.out.println("Enter the number of file that you want to add to favorite: ");
-                                    int selectedFile = in.nextInt();
-                                    int indexFile = selectedFile - 1;
-                                    ;
-                                    fileIdeas.get(indexFile).ChangeFavoriteIdea();
-                                    break;
-                                }
-                                if (number == 2) {
-                                    break;
-                                }
-
-                                file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
-                                PrintInFile.write(file.toString());
-                            } while (number != 2);
-                        }
+                        System.out.println("Quite the operation of owner");
 
                         break;
                     }
 
-                    case "Staff":
-                    case "staff":
-                    case "STAFF":
-                    case "3": {
-                        StaffMenu();
-                        operationNum = in.nextInt();
-
-                        //Display all file in (Ideas File)
-                        for (int i = 0; i < fileIdeas.size(); i++) {
-                            System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
-                        }
-                        System.out.println("Enter the number of file that you want: ");
-                        int selectedFile = in.nextInt();
-                        int indexFile = selectedFile - 1;
-
-                        if (operationNum == 1) {
-                            System.out.print("Do you want to change the idea state to accept (if Yes enter Y): ");
-                            Acceptance = in.next();
-                            if (Acceptance.equalsIgnoreCase("Y")) {
-                                fileIdeas.get(indexFile).ChangeStateIdea();
-                                System.out.println("Succuessful added in accepted file");
-                            }
-                            file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
-                            PrintInFile.write(file.toString());
-                        } else {
-                            break;
-                        }
-                        break;
-                    }
-                    case "Stop":
-                    case "stop":
-                    case "STOP":
-                    case "4": {
-                        System.exit(0);
-                    }
-                    default:
-                        break;
+                    break;
                 }
+                case "Investor":
+                case "investor":
+                case "INVESTOR":
+                case "2": {
+                    // Check if the list of file ideas is empty
+                    
+                        if (fileIdeas.isEmpty()) {
+                            System.out.println("The file is empty");
+                        } else {
+                            
+                           do { // Display the investor menu and prompt for an operation choice
+                            InvestorMenu();
+                            operationNum = in.nextInt();
 
-            } while (!"".equals(job));
+                            // Perform the selected operation based on the user's choice
+                            if (operationNum == 1) {
+                                // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
+                                AddFavoriteIdea(in, PrintInFile);
+                            } else {
+                                // If the user chooses any other operation, exit the specified job
+                                Quite("investor");
+                            }
+                        
+                    } while (operationNum != 2);
+                    
+            
+                }
+                        // Exit the loop
+                 break;       
+                }
+                case "Staff":
+                case "staff":
+                case "STAFF":
+                case "3": {
+                    StaffMenu();
+                    operationNum = in.nextInt();
 
-            PrintInFile.close();
-            PrintInFile.flush();
-            in.close();
-        } catch (FileNotFoundException e) {
-            System.err.println("File not found: " + e.getMessage());
-        }
+                    //Display all file in (Ideas File)
+                    for (int i = 0; i < fileIdeas.size(); i++) {
+                        System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
+                    }
+                    System.out.println("Enter the number of file that you want: ");
+                    int selectedFile = in.nextInt();
+                    int indexFile = selectedFile - 1;
+
+                    if (operationNum == 1) {
+                        System.out.print("Do you want to change the idea state to accept (if Yes enter Y): ");
+                        Acceptance = in.next();
+                        if (Acceptance.equalsIgnoreCase("Y")) {
+                            fileIdeas.get(indexFile).ChangeStateIdea();
+                            System.out.println("Succuessful added in accepted file");
+                        }
+                        file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
+                        PrintInFile.write(file.toString());
+                    } else {
+                        break;
+                    }
+                    break;
+                }
+                case "Stop":
+                case "stop":
+                case "STOP":
+                case "4": {
+                    System.exit(0);
+                }
+                default:
+                    break;
+            }
+
+        } while (!"".equals(job));
+
+        PrintInFile.close();
+        PrintInFile.flush();
+        in.close();
+
     }
 
     public static void showMenu() {
@@ -233,7 +218,7 @@ public class CPIT251Project {
             System.out.println("the file is empty");
         } else {
 
-             // Display the list of file ideas and get the index to delete
+            // Display the list of file ideas and get the index to delete
             int indexFile = DisplayIdeaFile(in); // call DisplayIdeaFile method
             // Remove the file idea at the specified index
             fileIdeas.remove(indexFile);
@@ -242,9 +227,27 @@ public class CPIT251Project {
         }
 
     }
+//Add ideas to Favorite place
 
     public static void AddFavoriteIdea(Scanner in, PrintWriter PrintInFile) {
+        // Display the list of files with their numbers and names
+        for (int i = 0; i < fileIdeas.size(); i++) {
+            System.out.println("File number " + (i + 1) + "\t" + fileIdeas.get(i).getIdeaName());
+        }
 
+        // Prompt the user to select a file by number
+        System.out.println("Enter the number of the file that you want to add to favorites: ");
+        int selectedFile = in.nextInt();
+        int indexFile = selectedFile - 1;
+
+        // Update the favorite status of the selected file
+        fileIdeas.get(indexFile).ChangeFavoriteIdea();
+
+        // Create a new file object with the updated information
+        file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+
+        // Write the modified file information in file
+        PrintInFile.write(file.toString());
     }
 
     public static void Acceptance(int operationNum, Scanner in, PrintWriter PrintInFile) {
