@@ -35,101 +35,76 @@ public class CPIT251Project {
             showMenu();
             job = in.next();
 
-            switch (job) {
-                case "Owner":
-                case "owner":
-                case "OWNER":
-                case "1": {
-                     do { 
+            // Check if the job is related to "Owner"
+            if ("Owner".equalsIgnoreCase(job) || "1".equals(job)) {
+                // Execute the following block for "Owner" job
+                do {
+                    // Display the owner menu and prompt for an operation choice
                     OwnerMenu();
-                    operationNum = in.nextInt();// Get the user's operation choice
+                    // Get the user's operation choice
+                    operationNum = in.nextInt();
                     if (operationNum == 1) {
-                        SubmitFileIdea(in);// Call the SubmitFileIdea method
-
+                        // If the user chooses to add a file idea, invoke the SubmitFileIdea method
+                        SubmitFileIdea(in);
                     } else if (operationNum == 2) {
-                        DeleteFileIdea(in); // call DeleteFileIdea method
-
+                        // If the user chooses to delete a file idea, invoke the DeleteFileIdea method
+                        DeleteFileIdea(in);
                     } else {
-
-                      Quite("owner");
-
-                      
+                        // If the user chooses to quit the owner job, exit the loop
+                        Quite("owner");
                     }
-                      } while (operationNum != 3);
-
-                    break;
+                } while (operationNum != 3);
+            } else if ("Investor".equalsIgnoreCase(job) || "2".equals(job)) {
+                // Check if the list of file ideas is empty
+                if (fileIdeas.isEmpty()) {
+                    System.out.println("The file is empty");
+                } else {
+                    // Execute the following block for "Investor" job
+                    do {
+                        // Display the investor menu and prompt for an operation choice
+                        InvestorMenu();
+                        // Get the user's operation choice
+                        operationNum = in.nextInt();
+                        if (operationNum == 1) {
+                            // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
+                            AddFavoriteIdea(in);
+                        } else {
+                            // If the user chooses any other operation, exit the specified job
+                            Quite("investor");
+                        }
+                    } while (operationNum != 2);
                 }
-                case "Investor":
-                case "investor":
-                case "INVESTOR":
-                case "2": {
-                    // Check if the list of file ideas is empty
-
-                    if (fileIdeas.isEmpty()) {
-                        System.out.println("The file is empty");
-                    } else {
-
-                        do { 
-                            InvestorMenu();// Display the investor menu and prompt for an operation choice
-                            operationNum = in.nextInt();
-
-                            // Perform the selected operation based on the user's choice
-                            if (operationNum == 1) {
-                                // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
-                                AddFavoriteIdea(in);
-                            } else {
-                                // If the user chooses any other operation, exit the specified job
-                                Quite("investor");
-                            }
-
-                        } while (operationNum != 2);
-
-                    }
-                    // Exit the loop
-                    break;
+            } else if ("Staff".equalsIgnoreCase(job) || "3".equals(job)) {
+                // Check if the list of file ideas is empty
+                if (fileIdeas.isEmpty()) {
+                    System.out.println("The file is empty");
+                } else {
+                    // Execute the following block for "Staff" job
+                    do {
+                        // Display the staff menu and prompt for an operation choice
+                        StaffMenu();
+                        // Get the user's operation choice
+                        operationNum = in.nextInt();
+                        if (operationNum == 1) {
+                            // If the user chooses to change the idea state, invoke the Acceptance method
+                            Acceptance(operationNum, in);
+                        } else {
+                            // If the user chooses to quit the staff job, exit the loop
+                            Quite("staff");
+                        }
+                    } while (operationNum != 2);
                 }
-                case "Staff":
-                case "staff":
-                case "STAFF":
-                case "3": {
-                    // Check if the list of file ideas is empty
-                    if (fileIdeas.isEmpty()) {
-                        System.out.println("The file is empty");
-                    } else {
-
-                        do {    
-                            StaffMenu();// Display the staff menu and prompt for an operation choice
-                            operationNum = in.nextInt();
-
-                            if (operationNum == 1) {
-                                Acceptance(operationNum, in);
-
-                            } else {
-                                Quite("staff");  // Exit the staff job
-                            }
-
-                        } while (operationNum != 2);
-
-                    }
-                    // Exit the loop
-
-                    break;
-                }
-                case "Stop":
-                case "stop":
-                case "STOP":
-                case "4": {
-                    writeOnFile();
-                    System.exit(0);// Exit the program
-            
-                }
-                default:
-                    break;
+            } else if ("Stop".equalsIgnoreCase(job) || "4".equals(job)) {
+                // Execute the following block for "Stop" job
+                // Save data to file and exit the program
+                writeOnFile();
+                System.exit(0);
+            } else {
+                // Handle the default case if none of the specified conditions are met
             }
 
         } while (!"".equals(job));// Continue looping until an empty string is entered
 
-      
         in.close();
 
     }
@@ -237,7 +212,6 @@ public class CPIT251Project {
         // Create a new file object with the updated information
         file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
 
-       
     }
 
     public static void Acceptance(int operationNum, Scanner in) {
@@ -251,7 +225,6 @@ public class CPIT251Project {
 
         // Create a new file instance with the idea's details
         file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
-        
 
     }
 
@@ -275,7 +248,7 @@ public class CPIT251Project {
         System.out.println("Quite the operation of " + job);
 
     }
-    
+
     public static void writeOnFile() throws FileNotFoundException {
         // Create a PrintWriter to write to the "Ideas.txt" file
         PrintWriter PrintInFile = new PrintWriter("Ideas.txt");
@@ -301,6 +274,5 @@ public class CPIT251Project {
         PrintInFile.close();
         PrintInFile.flush();
     }
-    
 
 }
