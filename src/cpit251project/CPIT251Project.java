@@ -37,43 +37,9 @@ public class CPIT251Project {
 
             // Check if the job is related to "Owner"
             if ("Owner".equalsIgnoreCase(job) || "1".equals(job)) {
-                // Execute the following block for "Owner" job
-                do {
-                    // Display the owner menu and prompt for an operation choice
-                    OwnerMenu();
-                    // Get the user's operation choice
-                    operationNum = in.nextInt();
-                    if (operationNum == 1) {
-                        // If the user chooses to add a file idea, invoke the SubmitFileIdea method
-                        SubmitFileIdea(in);
-                    } else if (operationNum == 2) {
-                        // If the user chooses to delete a file idea, invoke the DeleteFileIdea method
-                        DeleteFileIdea(in);
-                    } else {
-                        // If the user chooses to quit the owner job, exit the loop
-                        Quite("owner");
-                    }
-                } while (operationNum != 3);
+               OwnerOperation(in);
             } else if ("Investor".equalsIgnoreCase(job) || "2".equals(job)) {
-                // Check if the list of file ideas is empty
-                if (fileIdeas.isEmpty()) {
-                    System.out.println("The file is empty");
-                } else {
-                    // Execute the following block for "Investor" job
-                    do {
-                        // Display the investor menu and prompt for an operation choice
-                        InvestorMenu();
-                        // Get the user's operation choice
-                        operationNum = in.nextInt();
-                        if (operationNum == 1) {
-                            // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
-                            AddFavoriteIdea(in);
-                        } else {
-                            // If the user chooses any other operation, exit the specified job
-                            Quite("investor");
-                        }
-                    } while (operationNum != 2);
-                }
+                InvestorOperation(in);
             } else if ("Staff".equalsIgnoreCase(job) || "3".equals(job)) {
                 // Check if the list of file ideas is empty
                 if (fileIdeas.isEmpty()) {
@@ -133,6 +99,48 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter number of operation for OWNER: ");
+
+    }
+      public static void OwnerOperation(Scanner in) {
+         // Execute the following block for "Owner" job
+                do {
+                    // Display the owner menu and prompt for an operation choice
+                    OwnerMenu();
+                    // Get the user's operation choice
+                    operationNum = in.nextInt();
+                    if (operationNum == 1) {
+                        // If the user chooses to add a file idea, invoke the SubmitFileIdea method
+                        SubmitFileIdea(in);
+                    } else if (operationNum == 2) {
+                        // If the user chooses to delete a file idea, invoke the DeleteFileIdea method
+                        DeleteFileIdea(in);
+                    } else {
+                        // If the user chooses to quit the owner job, exit the loop
+                        Quite("owner");
+                    }
+                } while (operationNum != 3);
+
+    }
+      public static void InvestorOperation(Scanner in) {
+            // Check if the list of file ideas is empty
+                if (fileIdeas.isEmpty()) {
+                    System.out.println("The file is empty");
+                } else {
+                    // Execute the following block for "Investor" job
+                    do {
+                        // Display the investor menu and prompt for an operation choice
+                        InvestorMenu();
+                        // Get the user's operation choice
+                        operationNum = in.nextInt();
+                        if (operationNum == 1) {
+                            // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
+                            AddFavoriteIdea(in);
+                        } else {
+                            // If the user chooses any other operation, exit the specified job
+                            Quite("investor");
+                        }
+                    } while (operationNum != 2);
+                }
 
     }
 
