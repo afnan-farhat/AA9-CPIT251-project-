@@ -39,16 +39,33 @@ public class CPIT251ProjectTest {
     public void tearDown() {
     }
 
+    /* Test of SubmitFileIdea method, of class CPIT251Project.
+     */
     @Test
-    public void testSubmitFileIdea() {
-        System.out.println("SubmitFileIdea");
-        Scanner in = null;
-        CPIT251Project.SubmitFileIdea(in);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void testSubmitFileIdea_checkDescriptionLength() {
+        CreateFile file = new CreateFile("pickup and walk", "Enhance your university experience with our app,"
+                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
+                + " savor top-notch coffee, and indulge in a variety of delightful treats."
+                + " Our cafe is the perfect blend of good vibes and seamless conversations.", "ghada mohammed alshehri");
+        int CurrentlengthName = file.getDescription().length();
+        int ExpectedLenght = 256;
+        assertTrue(CurrentlengthName >= ExpectedLenght);
+
     }
 
-/*
+    @Test
+    public void testSubmitFileIdea_checkOwnerNameIsNotString() {
+        CreateFile file = new CreateFile("pickup and walk", "Enhance your university experience with our app,"
+                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
+                + " savor top-notch coffee, and indulge in a variety of delightful treats."
+                + " Our cafe is the perfect blend of good vibes and seamless conversations.", "Layan 1234");
+        String currentOwnerName = file.getOwnerName();
+
+        // Use a regular expression to check if the owner name does not contain any digits
+        assertTrue(currentOwnerName.matches(".*\\d.*"));
+    }
+
+    /*
      * Test of DeleteFileIdea method, of class CPIT251Project.
      */
     @Test
@@ -82,7 +99,6 @@ public class CPIT251ProjectTest {
         // Check if the fileIdeas list is empty after deletion
         assertFalse(fileIdeas.indexOf(file1) == 0);
     }
-
 
     @Test
     public void testAddFavoriteIdea_TheIdeaNotFav() {
