@@ -30,7 +30,7 @@ public class CPIT251Project {
         PrintWriter PrintInFile = new PrintWriter("Ideas.txt");
 
         String job;
-
+        // Main loop to handle different roles and operations
         do {
 
             showMenu();
@@ -41,20 +41,22 @@ public class CPIT251Project {
                 case "owner":
                 case "OWNER":
                 case "1": {
+                     do { 
                     OwnerMenu();
-                    operationNum = in.nextInt();
+                    operationNum = in.nextInt();// Get the user's operation choice
                     if (operationNum == 1) {
-                        SubmitFileIdea(in, PrintInFile);
+                        SubmitFileIdea(in, PrintInFile);// Call the SubmitFileIdea method
 
                     } else if (operationNum == 2) {
                         DeleteFileIdea(in, PrintInFile); // call DeleteFileIdea method
 
-                    } else if (operationNum == 3) {
+                    } else {
 
-                        System.out.println("Quite the operation of owner");
+                      Quite("owner");
 
-                        break;
+                      
                     }
+                      } while (operationNum != 3);
 
                     break;
                 }
@@ -63,13 +65,13 @@ public class CPIT251Project {
                 case "INVESTOR":
                 case "2": {
                     // Check if the list of file ideas is empty
-                    
-                        if (fileIdeas.isEmpty()) {
-                            System.out.println("The file is empty");
-                        } else {
-                            
-                           do { // Display the investor menu and prompt for an operation choice
-                            InvestorMenu();
+
+                    if (fileIdeas.isEmpty()) {
+                        System.out.println("The file is empty");
+                    } else {
+
+                        do { 
+                            InvestorMenu();// Display the investor menu and prompt for an operation choice
                             operationNum = in.nextInt();
 
                             // Perform the selected operation based on the user's choice
@@ -80,13 +82,12 @@ public class CPIT251Project {
                                 // If the user chooses any other operation, exit the specified job
                                 Quite("investor");
                             }
-                        
-                    } while (operationNum != 2);
-                    
-            
-                }
-                        // Exit the loop
-                 break;       
+
+                        } while (operationNum != 2);
+
+                    }
+                    // Exit the loop
+                    break;
                 }
                 case "Staff":
                 case "staff":
@@ -97,37 +98,36 @@ public class CPIT251Project {
                         System.out.println("The file is empty");
                     } else {
 
-                        do {    // Display the staff menu and prompt for an operation choice
-                            StaffMenu();
+                        do {    
+                            StaffMenu();// Display the staff menu and prompt for an operation choice
                             operationNum = in.nextInt();
 
-                        if (operationNum == 1) {
-                            Acceptance(operationNum, in, PrintInFile);
+                            if (operationNum == 1) {
+                                Acceptance(operationNum, in, PrintInFile);
 
-                        } else {
-                            Quite("staff");
-                        }
+                            } else {
+                                Quite("staff");  // Exit the staff job
+                            }
 
                         } while (operationNum != 2);
 
                     }
                     // Exit the loop
-                    
-                        
 
-                        break;
+                    break;
                 }
                 case "Stop":
                 case "stop":
                 case "STOP":
                 case "4": {
-                    System.exit(0);
+                    System.exit(0);// Exit the program
+            
                 }
                 default:
                     break;
             }
 
-        } while (!"".equals(job));
+        } while (!"".equals(job));// Continue looping until an empty string is entered
 
         PrintInFile.close();
         PrintInFile.flush();
@@ -190,22 +190,23 @@ public class CPIT251Project {
         System.out.println("Enter the number of file idea that you want to added: ");
         NoFileIdea = in.nextInt();
         for (int i = 1; i <= NoFileIdea; i++) {
+            // Display and write the file number
             String firstLine = "File number: " + i;
             PrintInFile.write(firstLine);
             System.out.println(firstLine);
-
+            // Prompt the user to enter the owner's name, idea name, and description
             System.out.println("Enter your name as owner idea: ");
             OwnerName = in.next();
             System.out.println("Enter the idea name: ");
             IdeaName = in.next();
             System.out.println("Enter describtion of idea: ");
             desc = in.next();
-
+            // Create a new file with the provided information
             file = new CreateFile(IdeaName, desc, OwnerName);
-
+            // Add the file to the list of file ideas
             fileIdeas.add(file);
-            PrintInFile.println(fileIdeas.toString());
-
+            PrintInFile.println(fileIdeas.toString());      // Write the list of file ideas to the file
+            // Display a success message for adding the idea
             System.out.println("Succuessful added the idea! ");
         }
 
@@ -230,15 +231,8 @@ public class CPIT251Project {
 //Add ideas to Favorite place
 
     public static void AddFavoriteIdea(Scanner in, PrintWriter PrintInFile) {
-        // Display the list of files with their numbers and names
-        for (int i = 0; i < fileIdeas.size(); i++) {
-            System.out.println("File number " + (i + 1) + "\t" + fileIdeas.get(i).getIdeaName());
-        }
-
-        // Prompt the user to select a file by number
-        System.out.println("Enter the number of the file that you want to add to favorites: ");
-        int selectedFile = in.nextInt();
-        int indexFile = selectedFile - 1;
+        // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
+        int indexFile = DisplayIdeaFile(in);
 
         // Update the favorite status of the selected file
         fileIdeas.get(indexFile).ChangeFavoriteIdea();
@@ -252,19 +246,17 @@ public class CPIT251Project {
 
     public static void Acceptance(int operationNum, Scanner in, PrintWriter PrintInFile) {
         // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
-    int indexFile = DisplayIdeaFile(in);
+        int indexFile = DisplayIdeaFile(in);
 
-    // Change the state of the selected idea to indicate it has been accepted
-    fileIdeas.get(indexFile).ChangeStateIdea();
-    // Print a success message to the console
-    System.out.println("Successful added in accepted file");
+        // Change the state of the selected idea to indicate it has been accepted
+        fileIdeas.get(indexFile).ChangeStateIdea();
+        // Print a success message to the console
+        System.out.println("Successful added in accepted file");
 
-    // Create a new file instance with the idea's details
-    file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
-    // Write the file's string representation to the PrintWriter object, to save it in a file
-    PrintInFile.write(file.toString());
-        
-       
+        // Create a new file instance with the idea's details
+        file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
+        // Write the file's string representation to the PrintWriter object, to save it in a file
+        PrintInFile.write(file.toString());
 
     }
 
