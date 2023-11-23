@@ -5,6 +5,7 @@
  */
 package cpit251project;
 
+import java.util.Scanner;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -14,85 +15,86 @@ import static org.junit.Assert.*;
 
 /**
  *
- * @author Afnan
+ * @author layan
  */
 public class CPIT251ProjectTest {
-    
+
     public CPIT251ProjectTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
 
-    /**
-     * Test of main method, of class CPIT251Project.
-     */
     @Test
-    public void testMain() throws Exception {
-        System.out.println("main");
-        String[] args = null;
-        CPIT251Project.main(args);
+    public void testSubmitFileIdea() {
+        System.out.println("SubmitFileIdea");
+        Scanner in = null;
+        CPIT251Project.SubmitFileIdea(in);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
     /**
-     * Test of showMenu method, of class CPIT251Project.
+     * Test of DeleteFileIdea method, of class CPIT251Project.
      */
     @Test
-    public void testShowMenu() {
-        System.out.println("showMenu");
-        CPIT251Project.showMenu();
+    public void testDeleteFileIdea() {
+        System.out.println("DeleteFileIdea");
+        Scanner in = null;
+        CPIT251Project.DeleteFileIdea(in);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
+    @Test
+    public void testAddFavoriteIdea_TheIdeaNotFav() {
+        CreateFile FAV_IDEA = new CreateFile("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
+                + " savor top-notch coffee, and indulge in a variety of delightful treats."
+                + " Our cafe is the perfect blend of good vibes and seamless conversations.", false, "Accept");
+        boolean currentvalue = FAV_IDEA.getFavoriteState();
+        boolean ExpectedValue = false;
+        assertSame(ExpectedValue, currentvalue);
+
+    }
+
+    @Test
+    public void testAddFavoriteIdea_ChangeFavIdea() {
+        CreateFile FAV_IDEA = new CreateFile("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
+                + " savor top-notch coffee, and indulge in a variety of delightful treats."
+                + " Our cafe is the perfect blend of good vibes and seamless conversations.", false, "Accept");
+
+        FAV_IDEA.ChangeFavoriteIdea();
+        boolean ExpectedValue = true;
+        assertSame(FAV_IDEA.getFavoriteState(), ExpectedValue);
+
+    }
+
     /**
-     * Test of OwnerMenu method, of class CPIT251Project.
+     * Test of Acceptance method, of class CPIT251Project.
      */
     @Test
-    public void testOwnerMenu() {
-        System.out.println("OwnerMenu");
-        CPIT251Project.OwnerMenu();
+    public void testAcceptance() {
+        System.out.println("Acceptance");
+        int operationNum = 0;
+        Scanner in = null;
+        CPIT251Project.Acceptance(operationNum, in);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
-    /**
-     * Test of InvestorMenu method, of class CPIT251Project.
-     */
-    @Test
-    public void testInvestorMenu() {
-        System.out.println("InvestorMenu");
-        CPIT251Project.InvestorMenu();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    /**
-     * Test of StaffMenu method, of class CPIT251Project.
-     */
-    @Test
-    public void testStaffMenu() {
-        System.out.println("StaffMenu");
-        CPIT251Project.StaffMenu();
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-    
-    
-    
 }
