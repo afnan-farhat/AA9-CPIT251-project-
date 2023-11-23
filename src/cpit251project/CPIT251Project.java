@@ -51,30 +51,17 @@ public class CPIT251Project {
                         operationNum = in.nextInt();
                         if (operationNum == 1) {
                             SubmitFileIdea(in, printInFile);
+
                         } else if (operationNum == 2) {
-                            if (fileIdeas.isEmpty()) {
-                                System.out.println("the file is empty");
-                            } else {
+                            DeleteFileIdea(in, printInFile); // call DeleteFileIdea method
 
-                                //Display all file in (Ideas File)
-                                for (int i = 0; i < fileIdeas.size(); i++) {
-                                    System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
-                                }
-
-                                // select file number 
-                                System.out.println("Enter the number of file that you want to delete it : ");
-                                int selectedFile = in.nextInt();
-                                int indexFile = selectedFile - 1;
-
-                                fileIdeas.remove(indexFile);
-                                System.out.println("Succuessful deleted the file idea!");
-
-                            }
                         } else if (operationNum == 3) {
                             break;
                         }
 
-                    }case "Investor":
+                        break;
+                    }
+                    case "Investor":
                     case "investor":
                     case "INVESTOR":
                     case "2": {
@@ -239,7 +226,20 @@ public class CPIT251Project {
 
     }
 
+    //Deletes a file idea from the list of fileIdeas
     public static void DeleteFileIdea(Scanner in, PrintWriter PrintInFile) {
+        // Check if the list of fileIdeas is empty
+        if (fileIdeas.isEmpty()) {
+            System.out.println("the file is empty");
+        } else {
+
+             // Display the list of file ideas and get the index to delete
+            int indexFile = DisplayIdeaFile(in); // call DisplayIdeaFile method
+            // Remove the file idea at the specified index
+            fileIdeas.remove(indexFile);
+            System.out.println("Succuessful deleted the file idea!");
+
+        }
 
     }
 
@@ -251,8 +251,20 @@ public class CPIT251Project {
 
     }
 
+    //Displays all file ideas and returns the index of the selected file idea
     public static int DisplayIdeaFile(Scanner in) {
-        return 0;
+        //Display all file in (Ideas File)
+        for (int i = 0; i < fileIdeas.size(); i++) {
+            System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
+        }
+        // Prompt the user to enter the number of the file idea they want to select
+        System.out.println("Enter the number of file that you want: ");
+        int selectedFile = in.nextInt();
+        // Calculate the index based on the user's selection
+        int indexFile = selectedFile - 1;
+        // Return the index of the selected file idea
+        return indexFile;
+
     }
 
     public static void Quite(String job) {
