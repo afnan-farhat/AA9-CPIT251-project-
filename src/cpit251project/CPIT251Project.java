@@ -195,6 +195,7 @@ public class CPIT251Project {
         
     }
     
+    
     public static void showMenu() {
         System.out.println("|-----------------------------------------------|");
         System.out.println("|------                JOBS               ------|");
@@ -206,9 +207,9 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter your job: ");
-        
+
     }
-    
+
     public static void OwnerMenu() {
         System.out.println("|-----------------------------------------------|");
         System.out.println("|------           OWNER OPERATIONS        ------|");
@@ -219,9 +220,9 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter number of operation for OWNER: ");
-        
+
     }
-    
+
     public static void InvestorMenu() {
         System.out.println("|-----------------------------------------------|");
         System.out.println("|------        INVESTOR OPERATIONS        ------|");
@@ -231,9 +232,9 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter number of operation for INVESTOR: ");
-        
+
     }
-    
+
     public static void StaffMenu() {
         System.out.println("|-----------------------------------------------|");
         System.out.println("|------            STAFF OPERATIONS       ------|");
@@ -243,7 +244,56 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter number of operation for STAFF: ");
+
+    }
+
+    public static void SubmitFileIdea(Scanner in, PrintWriter PrintInFile) {
+        System.out.println("Enter the number of file idea that you want to added: ");
+        NoFileIdea = in.nextInt();
+        for (int i = 1; i <= NoFileIdea; i++) {
+            String firstLine = "File number: " + i;
+            PrintInFile.write(firstLine);
+            System.out.println(firstLine);
+
+            System.out.println("Enter your name as owner idea: ");
+            OwnerName = in.next();
+            System.out.println("Enter the idea name: ");
+            IdeaName = in.next();
+            System.out.println("Enter describtion of idea: ");
+            desc = in.next();
+
+            file = new CreateFile(IdeaName, desc, OwnerName);
+
+            fileIdeas.add(file);
+            PrintInFile.println(fileIdeas.toString());
+
+            System.out.println("Succuessful added the idea! ");
+        }
+
+    }
+
+    public static void DeleteFileIdea(Scanner in, PrintWriter PrintInFile) {
+
         
     }
+
+    public static void AddFavoriteIdea(Scanner in, PrintWriter PrintInFile) {
+       
+    }
+
+    public static void Acceptance(int operationNum, Scanner in, PrintWriter PrintInFile) {
+      
+    }
+
+    public static int DisplayIdeaFile(Scanner in) {
+       return 0;
+    }
+
+    public static void Quite(String job) {
+        System.out.println("Quite the operation of " + job);
+
+    }
+    
+    
     
 }
