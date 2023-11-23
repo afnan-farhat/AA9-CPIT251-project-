@@ -92,30 +92,30 @@ public class CPIT251Project {
                 case "staff":
                 case "STAFF":
                 case "3": {
-                    StaffMenu();
-                    operationNum = in.nextInt();
-
-                    //Display all file in (Ideas File)
-                    for (int i = 0; i < fileIdeas.size(); i++) {
-                        System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
-                    }
-                    System.out.println("Enter the number of file that you want: ");
-                    int selectedFile = in.nextInt();
-                    int indexFile = selectedFile - 1;
-
-                    if (operationNum == 1) {
-                        System.out.print("Do you want to change the idea state to accept (if Yes enter Y): ");
-                        Acceptance = in.next();
-                        if (Acceptance.equalsIgnoreCase("Y")) {
-                            fileIdeas.get(indexFile).ChangeStateIdea();
-                            System.out.println("Succuessful added in accepted file");
-                        }
-                        file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
-                        PrintInFile.write(file.toString());
+                    // Check if the list of file ideas is empty
+                    if (fileIdeas.isEmpty()) {
+                        System.out.println("The file is empty");
                     } else {
-                        break;
+
+                        do {    // Display the staff menu and prompt for an operation choice
+                            StaffMenu();
+                            operationNum = in.nextInt();
+
+                        if (operationNum == 1) {
+                            Acceptance(operationNum, in, PrintInFile);
+
+                        } else {
+                            Quite("staff");
+                        }
+
+                        } while (operationNum != 2);
+
                     }
-                    break;
+                    // Exit the loop
+                    
+                        
+
+                        break;
                 }
                 case "Stop":
                 case "stop":
@@ -251,6 +251,20 @@ public class CPIT251Project {
     }
 
     public static void Acceptance(int operationNum, Scanner in, PrintWriter PrintInFile) {
+        // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
+    int indexFile = DisplayIdeaFile(in);
+
+    // Change the state of the selected idea to indicate it has been accepted
+    fileIdeas.get(indexFile).ChangeStateIdea();
+    // Print a success message to the console
+    System.out.println("Successful added in accepted file");
+
+    // Create a new file instance with the idea's details
+    file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
+    // Write the file's string representation to the PrintWriter object, to save it in a file
+    PrintInFile.write(file.toString());
+        
+       
 
     }
 
