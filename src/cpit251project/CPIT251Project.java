@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class CPIT251Project {
@@ -86,6 +87,7 @@ public class CPIT251Project {
       public static void OwnerOperation(Scanner in) {
          // Execute the following block for "Owner" job
                 do {
+                    try {
                     // Display the owner menu and prompt for an operation choice
                     OwnerMenu();
                     // Get the user's operation choice
@@ -100,6 +102,11 @@ public class CPIT251Project {
                         // If the user chooses to quit the owner job, exit the loop
                         Quite("owner");
                     }
+                     } catch (InputMismatchException e) {
+                // Handle InputMismatchException (non-integer input)
+                System.out.println("Invalid input. Please enter a valid integer.");
+                in.nextLine(); // Clear the buffer
+            }
                 } while (operationNum != 3);
 
     }
@@ -110,6 +117,7 @@ public class CPIT251Project {
                 } else {
                     // Execute the following block for "Investor" job
                     do {
+                        try {
                         // Display the investor menu and prompt for an operation choice
                         InvestorMenu();
                         // Get the user's operation choice
@@ -120,7 +128,13 @@ public class CPIT251Project {
                         } else {
                             // If the user chooses any other operation, exit the specified job
                             Quite("investor");
-                        }
+                         }
+                } catch (InputMismatchException e) {
+                    // Handle InputMismatchException (non-integer input)
+                    System.out.println("Invalid input. Please enter a valid integer.");
+                    in.nextLine(); // Clear the buffer
+                }
+                        
                     } while (operationNum != 2);
                 }
 
@@ -132,6 +146,7 @@ public class CPIT251Project {
                 } else {
                     // Execute the following block for "Staff" job
                     do {
+                        try {
                         // Display the staff menu and prompt for an operation choice
                         StaffMenu();
                         // Get the user's operation choice
@@ -143,6 +158,12 @@ public class CPIT251Project {
                             // If the user chooses to quit the staff job, exit the loop
                             Quite("staff");
                         }
+                         } catch (InputMismatchException e) {
+                    // Handle InputMismatchException (non-integer input)
+                    System.out.println("Invalid input. Please enter a valid integer.");
+                    in.nextLine(); // Clear the buffer
+                }
+
                     } while (operationNum != 2);
                 }
        }
