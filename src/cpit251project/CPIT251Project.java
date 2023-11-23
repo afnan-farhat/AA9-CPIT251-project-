@@ -41,25 +41,7 @@ public class CPIT251Project {
             } else if ("Investor".equalsIgnoreCase(job) || "2".equals(job)) {
                 InvestorOperation(in);
             } else if ("Staff".equalsIgnoreCase(job) || "3".equals(job)) {
-                // Check if the list of file ideas is empty
-                if (fileIdeas.isEmpty()) {
-                    System.out.println("The file is empty");
-                } else {
-                    // Execute the following block for "Staff" job
-                    do {
-                        // Display the staff menu and prompt for an operation choice
-                        StaffMenu();
-                        // Get the user's operation choice
-                        operationNum = in.nextInt();
-                        if (operationNum == 1) {
-                            // If the user chooses to change the idea state, invoke the Acceptance method
-                            Acceptance(operationNum, in);
-                        } else {
-                            // If the user chooses to quit the staff job, exit the loop
-                            Quite("staff");
-                        }
-                    } while (operationNum != 2);
-                }
+                 StaffOperation(in);
             } else if ("Stop".equalsIgnoreCase(job) || "4".equals(job)) {
                 // Execute the following block for "Stop" job
                 // Save data to file and exit the program
@@ -143,6 +125,27 @@ public class CPIT251Project {
                 }
 
     }
+       public static void StaffOperation(Scanner in){
+            // Check if the list of file ideas is empty
+                if (fileIdeas.isEmpty()) {
+                    System.out.println("The file is empty");
+                } else {
+                    // Execute the following block for "Staff" job
+                    do {
+                        // Display the staff menu and prompt for an operation choice
+                        StaffMenu();
+                        // Get the user's operation choice
+                        operationNum = in.nextInt();
+                        if (operationNum == 1) {
+                            // If the user chooses to change the idea state, invoke the Acceptance method
+                            Acceptance(operationNum, in);
+                        } else {
+                            // If the user chooses to quit the staff job, exit the loop
+                            Quite("staff");
+                        }
+                    } while (operationNum != 2);
+                }
+       }
 
     public static void InvestorMenu() {
         System.out.println("|-----------------------------------------------|");
