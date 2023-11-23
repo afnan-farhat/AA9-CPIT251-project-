@@ -27,7 +27,6 @@ public class CPIT251Project {
     public static void main(String[] args) throws FileNotFoundException {
 
         Scanner in = new Scanner(System.in);
-        PrintWriter PrintInFile = new PrintWriter("Ideas.txt");
 
         String job;
         // Main loop to handle different roles and operations
@@ -45,10 +44,10 @@ public class CPIT251Project {
                     OwnerMenu();
                     operationNum = in.nextInt();// Get the user's operation choice
                     if (operationNum == 1) {
-                        SubmitFileIdea(in, PrintInFile);// Call the SubmitFileIdea method
+                        SubmitFileIdea(in);// Call the SubmitFileIdea method
 
                     } else if (operationNum == 2) {
-                        DeleteFileIdea(in, PrintInFile); // call DeleteFileIdea method
+                        DeleteFileIdea(in); // call DeleteFileIdea method
 
                     } else {
 
@@ -77,7 +76,7 @@ public class CPIT251Project {
                             // Perform the selected operation based on the user's choice
                             if (operationNum == 1) {
                                 // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
-                                AddFavoriteIdea(in, PrintInFile);
+                                AddFavoriteIdea(in);
                             } else {
                                 // If the user chooses any other operation, exit the specified job
                                 Quite("investor");
@@ -103,7 +102,7 @@ public class CPIT251Project {
                             operationNum = in.nextInt();
 
                             if (operationNum == 1) {
-                                Acceptance(operationNum, in, PrintInFile);
+                                Acceptance(operationNum, in);
 
                             } else {
                                 Quite("staff");  // Exit the staff job
@@ -120,6 +119,7 @@ public class CPIT251Project {
                 case "stop":
                 case "STOP":
                 case "4": {
+                    writeOnFile();
                     System.exit(0);// Exit the program
             
                 }
@@ -129,8 +129,7 @@ public class CPIT251Project {
 
         } while (!"".equals(job));// Continue looping until an empty string is entered
 
-        PrintInFile.close();
-        PrintInFile.flush();
+      
         in.close();
 
     }
@@ -186,13 +185,12 @@ public class CPIT251Project {
 
     }
 
-    public static void SubmitFileIdea(Scanner in, PrintWriter PrintInFile) {
+    public static void SubmitFileIdea(Scanner in) {
         System.out.println("Enter the number of file idea that you want to added: ");
         NoFileIdea = in.nextInt();
         for (int i = 1; i <= NoFileIdea; i++) {
             // Display and write the file number
             String firstLine = "File number: " + i;
-            PrintInFile.write(firstLine);
             System.out.println(firstLine);
             // Prompt the user to enter the owner's name, idea name, and description
             System.out.println("Enter your name as owner idea: ");
@@ -205,7 +203,6 @@ public class CPIT251Project {
             file = new CreateFile(IdeaName, desc, OwnerName);
             // Add the file to the list of file ideas
             fileIdeas.add(file);
-            PrintInFile.println(fileIdeas.toString());      // Write the list of file ideas to the file
             // Display a success message for adding the idea
             System.out.println("Succuessful added the idea! ");
         }
@@ -213,7 +210,7 @@ public class CPIT251Project {
     }
 
     //Deletes a file idea from the list of fileIdeas
-    public static void DeleteFileIdea(Scanner in, PrintWriter PrintInFile) {
+    public static void DeleteFileIdea(Scanner in) {
         // Check if the list of fileIdeas is empty
         if (fileIdeas.isEmpty()) {
             System.out.println("the file is empty");
@@ -230,7 +227,7 @@ public class CPIT251Project {
     }
 //Add ideas to Favorite place
 
-    public static void AddFavoriteIdea(Scanner in, PrintWriter PrintInFile) {
+    public static void AddFavoriteIdea(Scanner in) {
         // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
         int indexFile = DisplayIdeaFile(in);
 
@@ -240,11 +237,10 @@ public class CPIT251Project {
         // Create a new file object with the updated information
         file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
 
-        // Write the modified file information in file
-        PrintInFile.write(file.toString());
+       
     }
 
-    public static void Acceptance(int operationNum, Scanner in, PrintWriter PrintInFile) {
+    public static void Acceptance(int operationNum, Scanner in) {
         // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
         int indexFile = DisplayIdeaFile(in);
 
@@ -255,8 +251,7 @@ public class CPIT251Project {
 
         // Create a new file instance with the idea's details
         file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
-        // Write the file's string representation to the PrintWriter object, to save it in a file
-        PrintInFile.write(file.toString());
+        
 
     }
 
@@ -280,5 +275,32 @@ public class CPIT251Project {
         System.out.println("Quite the operation of " + job);
 
     }
+    
+    public static void writeOnFile() throws FileNotFoundException {
+        // Create a PrintWriter to write to the "Ideas.txt" file
+        PrintWriter PrintInFile = new PrintWriter("Ideas.txt");
+
+        // Write header and spacing to the file
+        PrintInFile.println(" --------------- IDEA FILES ---------------");
+        PrintInFile.println("\n");
+
+        // Iterate through the list of fileIdeas
+        for (int i = 0; i < fileIdeas.size(); i++) {
+            // Write the file number and separator to the file
+            PrintInFile.println("The number of file: " + (i + 1));
+            PrintInFile.println(" ------------------------------------------");
+
+            // Write the information of the current file idea to the file
+            PrintInFile.println(fileIdeas.get(i).toString());
+            PrintInFile.println(); // Add an empty line for better readability
+        }
+
+        // Display success message
+        System.out.println("Successfully added the ideas!");
+        // Close the PrintWriter and flush the output to the file
+        PrintInFile.close();
+        PrintInFile.flush();
+    }
+    
 
 }
