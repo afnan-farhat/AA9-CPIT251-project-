@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cpit251project;
 
 import java.io.File;
@@ -38,11 +33,11 @@ public class CPIT251Project {
 
             // Check if the job is related to "Owner"
             if ("Owner".equalsIgnoreCase(job) || "1".equals(job)) {
-               OwnerOperation(in);
+                OwnerOperation(in);
             } else if ("Investor".equalsIgnoreCase(job) || "2".equals(job)) {
                 InvestorOperation(in);
             } else if ("Staff".equalsIgnoreCase(job) || "3".equals(job)) {
-                 StaffOperation(in);
+                StaffOperation(in);
             } else if ("Stop".equalsIgnoreCase(job) || "4".equals(job)) {
                 // Execute the following block for "Stop" job
                 // Save data to file and exit the program
@@ -84,89 +79,92 @@ public class CPIT251Project {
         System.out.print("> Please enter number of operation for OWNER: ");
 
     }
-      public static void OwnerOperation(Scanner in) {
-         // Execute the following block for "Owner" job
-                do {
-                    try {
-                    // Display the owner menu and prompt for an operation choice
-                    OwnerMenu();
-                    // Get the user's operation choice
-                    operationNum = in.nextInt();
-                    if (operationNum == 1) {
-                        // If the user chooses to add a file idea, invoke the SubmitFileIdea method
-                        SubmitFileIdea(in);
-                    } else if (operationNum == 2) {
-                        // If the user chooses to delete a file idea, invoke the DeleteFileIdea method
-                        DeleteFileIdea(in);
-                    } else {
-                        // If the user chooses to quit the owner job, exit the loop
-                        Quite("owner");
-                    }
-                     } catch (InputMismatchException e) {
+
+    public static void OwnerOperation(Scanner in) {
+        // Execute the following block for "Owner" job
+        do {
+            try {
+                // Display the owner menu and prompt for an operation choice
+                OwnerMenu();
+                // Get the user's operation choice
+                operationNum = in.nextInt();
+                if (operationNum == 1) {
+                    // If the user chooses to add a file idea, invoke the SubmitFileIdea method
+                    SubmitFileIdea(in);
+                } else if (operationNum == 2) {
+                    // If the user chooses to delete a file idea, invoke the DeleteFileIdea method
+                    DeleteFileIdea(in);
+                } else {
+                    // If the user chooses to quit the owner job, exit the loop
+                    Quite("owner");
+                }
+            } catch (InputMismatchException e) {
                 // Handle InputMismatchException (non-integer input)
                 System.out.println("Invalid input. Please enter a valid integer.");
                 in.nextLine(); // Clear the buffer
             }
-                } while (operationNum != 3);
+        } while (operationNum != 3);
 
     }
-      public static void InvestorOperation(Scanner in) {
-            // Check if the list of file ideas is empty
-                if (fileIdeas.isEmpty()) {
-                    System.out.println("The file is empty");
-                } else {
-                    // Execute the following block for "Investor" job
-                    do {
-                        try {
-                        // Display the investor menu and prompt for an operation choice
-                        InvestorMenu();
-                        // Get the user's operation choice
-                        operationNum = in.nextInt();
-                        if (operationNum == 1) {
-                            // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
-                            AddFavoriteIdea(in);
-                        } else {
-                            // If the user chooses any other operation, exit the specified job
-                            Quite("investor");
-                         }
+
+    public static void InvestorOperation(Scanner in) {
+        // Check if the list of file ideas is empty
+        if (fileIdeas.isEmpty()) {
+            System.out.println("The file is empty");
+        } else {
+            // Execute the following block for "Investor" job
+            do {
+                try {
+                    // Display the investor menu and prompt for an operation choice
+                    InvestorMenu();
+                    // Get the user's operation choice
+                    operationNum = in.nextInt();
+                    if (operationNum == 1) {
+                        // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
+                        AddFavoriteIdea(in);
+                    } else {
+                        // If the user chooses any other operation, exit the specified job
+                        Quite("investor");
+                    }
                 } catch (InputMismatchException e) {
                     // Handle InputMismatchException (non-integer input)
                     System.out.println("Invalid input. Please enter a valid integer.");
                     in.nextLine(); // Clear the buffer
                 }
-                        
-                    } while (operationNum != 2);
-                }
+
+            } while (operationNum != 2);
+        }
 
     }
-       public static void StaffOperation(Scanner in){
-            // Check if the list of file ideas is empty
-                if (fileIdeas.isEmpty()) {
-                    System.out.println("The file is empty");
-                } else {
-                    // Execute the following block for "Staff" job
-                    do {
-                        try {
-                        // Display the staff menu and prompt for an operation choice
-                        StaffMenu();
-                        // Get the user's operation choice
-                        operationNum = in.nextInt();
-                        if (operationNum == 1) {
-                            // If the user chooses to change the idea state, invoke the Acceptance method
-                            Acceptance(operationNum, in);
-                        } else {
-                            // If the user chooses to quit the staff job, exit the loop
-                            Quite("staff");
-                        }
-                         } catch (InputMismatchException e) {
+
+    public static void StaffOperation(Scanner in) {
+        // Check if the list of file ideas is empty
+        if (fileIdeas.isEmpty()) {
+            System.out.println("The file is empty");
+        } else {
+            // Execute the following block for "Staff" job
+            do {
+                try {
+                    // Display the staff menu and prompt for an operation choice
+                    StaffMenu();
+                    // Get the user's operation choice
+                    operationNum = in.nextInt();
+                    if (operationNum == 1) {
+                        // If the user chooses to change the idea state, invoke the Acceptance method
+                        Acceptance(operationNum, in);
+                    } else {
+                        // If the user chooses to quit the staff job, exit the loop
+                        Quite("staff");
+                    }
+                } catch (InputMismatchException e) {
                     // Handle InputMismatchException (non-integer input)
                     System.out.println("Invalid input. Please enter a valid integer.");
                     in.nextLine(); // Clear the buffer
                 }
 
-                    } while (operationNum != 2);
-                }
-       }
+            } while (operationNum != 2);
+        }
+    }
 
     public static void InvestorMenu() {
         System.out.println("|-----------------------------------------------|");
