@@ -1,8 +1,14 @@
 
 package cpit251project;
 
+import static cpit251project.Main.DeleteFileIdea;
+import static cpit251project.Main.Quite;
+import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
-public class CreateFile {
+
+public class FileMangmant {
 
     private String IdeaName;
     private String description;
@@ -10,10 +16,10 @@ public class CreateFile {
     private boolean favoriteState;
     private String state;
 
-    CreateFile() {
+    FileMangmant() {
     }
 
-    CreateFile(String IdeaName, String description, String OwnerName) {
+    FileMangmant(String IdeaName, String description, String OwnerName) {
         this.IdeaName = IdeaName;
         this.description = description;
         this.OwnerName = OwnerName;
@@ -21,7 +27,7 @@ public class CreateFile {
         this.state = "waiting";
     }
 
-    CreateFile(String IdeaName, String description, String OwnerName, boolean favoriteState, String state) {
+    FileMangmant(String IdeaName, String description, String OwnerName, boolean favoriteState, String state) {
         this.IdeaName = IdeaName;
         this.description = description;
         this.OwnerName = OwnerName;
@@ -88,6 +94,7 @@ public class CreateFile {
         }
     }
 
+    
     @Override
     public String toString() {
         return "Idea: " + IdeaName + "\n" + "description: " + description + "\nOwnername: " + OwnerName + "\nState: "

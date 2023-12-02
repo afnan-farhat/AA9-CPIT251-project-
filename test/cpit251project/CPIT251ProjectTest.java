@@ -43,7 +43,7 @@ public class CPIT251ProjectTest {
      */
     @Test
     public void testSubmitFileIdea_checkDescriptionLength() {
-        CreateFile file = new CreateFile("pickup and walk", "Enhance your university experience with our app,"
+        FileMangmant file = new FileMangmant("pickup and walk", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats."
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", "ghada mohammed alshehri");
@@ -55,7 +55,7 @@ public class CPIT251ProjectTest {
 
     @Test
     public void testSubmitFileIdea_checkOwnerNameIsNotString() {
-        CreateFile file = new CreateFile("pickup and walk", "Enhance your university experience with our app,"
+        FileMangmant file = new FileMangmant("pickup and walk", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats."
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", "Layan 1234");
@@ -70,7 +70,7 @@ public class CPIT251ProjectTest {
      */
     @Test
     public void testDeleteFileIdea_CheckExistenceFile() {
-        CreateFile FileIdea = new CreateFile("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+        FileMangmant FileIdea = new FileMangmant("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats."
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", true, "Accept");
@@ -79,13 +79,13 @@ public class CPIT251ProjectTest {
 
     @Test
     public void testDeleteFileIdea_DeleteFileIdea() {
-        ArrayList<CreateFile> fileIdeas = new ArrayList<>();
+        ArrayList<FileMangmant> fileIdeas = new ArrayList<>();
 
         // Crreat some file ideas for testing
-        CreateFile file1 = new CreateFile("Community Volunteer Hub", "An online platform connecting volunteers with local community projects, making it easy for individuals to find and contribute to causes they care about.", "Afnan Tariq Farhat");
-        CreateFile file2 = new CreateFile("Joyful Sweets", "Description2", "Marya Fawaz Marzuq");
-        CreateFile file3 = new CreateFile("Language Learning Game", "A gamified language learning app that uses interactive games and quizzes to make the language learning process fun and engaging for users of all ages.", "Layan Salim Aljohani");
-        CreateFile file4 = new CreateFile("VR Home Fitness", "A virtual reality fitness system for home use, providing immersive workouts in various virtual environments. It features AI-driven personalization, virtual trainers, and social connectivity for engaging exercise experiences.", "Ghada Mohmmed Alshehri");
+        FileMangmant file1 = new FileMangmant("Community Volunteer Hub", "An online platform connecting volunteers with local community projects, making it easy for individuals to find and contribute to causes they care about.", "Afnan Tariq Farhat");
+        FileMangmant file2 = new FileMangmant("Joyful Sweets", "Description2", "Marya Fawaz Marzuq");
+        FileMangmant file3 = new FileMangmant("Language Learning Game", "A gamified language learning app that uses interactive games and quizzes to make the language learning process fun and engaging for users of all ages.", "Layan Salim Aljohani");
+        FileMangmant file4 = new FileMangmant("VR Home Fitness", "A virtual reality fitness system for home use, providing immersive workouts in various virtual environments. It features AI-driven personalization, virtual trainers, and social connectivity for engaging exercise experiences.", "Ghada Mohmmed Alshehri");
 
         // Add some file ideas for testing
         fileIdeas.add(0, file1);
@@ -102,7 +102,7 @@ public class CPIT251ProjectTest {
 
     @Test
     public void testAddFavoriteIdea_TheIdeaNotFav() {
-        CreateFile FAV_IDEA = new CreateFile("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+        FileMangmant FAV_IDEA = new FileMangmant("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats."
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", false, "Accept");
@@ -114,7 +114,7 @@ public class CPIT251ProjectTest {
 
     @Test
     public void testAddFavoriteIdea_ChangeFavIdea() {
-        CreateFile FAV_IDEA = new CreateFile("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+        FileMangmant FAV_IDEA = new FileMangmant("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats."
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", false, "Accept");
@@ -132,7 +132,7 @@ public class CPIT251ProjectTest {
       @Test
     public void testAcceptance_IsWaiting() {
 
-        System.out.println("ChangeStateIdea"); CreateFile IDEAinfo = new CreateFile("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+        System.out.println("ChangeStateIdea"); FileMangmant IDEAinfo = new FileMangmant("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats. Our cafe is the perfect blend of good vibes and seamless conversations.");;
         String currentState = IDEAinfo.getState();
@@ -145,7 +145,7 @@ public class CPIT251ProjectTest {
     public void testAcceptance_ChangeAcceptedState() {
         System.out.println("ChangeStateIdea");
 
-        CreateFile IDEAinfo = new CreateFile("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+        FileMangmant IDEAinfo = new FileMangmant("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats. Our cafe is the perfect blend of good vibes and seamless conversations.");;
 

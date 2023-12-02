@@ -1,5 +1,6 @@
 package cpit251project;
 
+//import static cpit251project.FileMangmant.SubmitFileIdea;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -8,10 +9,10 @@ import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class CPIT251Project {
+public class Main {
 
-    private static ArrayList<CreateFile> fileIdeas = new ArrayList<>();
-    private static CreateFile file = new CreateFile();
+    private static ArrayList<FileMangmant> fileIdeas = new ArrayList<>();
+    private static FileMangmant file = new FileMangmant();
     private static String OwnerName;
     private static String desc;
     private static String IdeaName;
@@ -33,7 +34,7 @@ public class CPIT251Project {
 
             // Check if the job is related to "Owner"
             if ("Owner".equalsIgnoreCase(job) || "1".equals(job)) {
-                OwnerOperation(in);
+                OwnerOperation(in, operationNum, NoFileIdea, file, fileIdeas);
             } else if ("Investor".equalsIgnoreCase(job) || "2".equals(job)) {
                 InvestorOperation(in);
             } else if ("Staff".equalsIgnoreCase(job) || "3".equals(job)) {
@@ -67,20 +68,7 @@ public class CPIT251Project {
 
     }
 
-    public static void OwnerMenu() {
-        System.out.println("|-----------------------------------------------|");
-        System.out.println("|------           OWNER OPERATIONS        ------|");
-        System.out.println("|-----------------------------------------------|");
-        System.out.println("|   1. add file idea                            |");
-        System.out.println("|   2. delete                                   |");
-        System.out.println("|   3. quite                                    |");
-        System.out.println("|-----------------------------------------------|");
-        System.out.println();
-        System.out.print("> Please enter number of operation for OWNER: ");
-
-    }
-
-    public static void OwnerOperation(Scanner in) {
+    public static void OwnerOperation(Scanner in, int operationNum, int NoFileIdea, FileMangmant file, ArrayList<FileMangmant> fileIdeas) {
         // Execute the following block for "Owner" job
         do {
             try {
@@ -90,7 +78,7 @@ public class CPIT251Project {
                 operationNum = in.nextInt();
                 if (operationNum == 1) {
                     // If the user chooses to add a file idea, invoke the SubmitFileIdea method
-                    SubmitFileIdea(in);
+                    Owner.SubmitFileIdea(in, NoFileIdea, file, fileIdeas);
                 } else if (operationNum == 2) {
                     // If the user chooses to delete a file idea, invoke the DeleteFileIdea method
                     DeleteFileIdea(in);
@@ -166,6 +154,19 @@ public class CPIT251Project {
         }
     }
 
+    public static void OwnerMenu() {
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|------           OWNER OPERATIONS        ------|");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println("|   1. add file idea                            |");
+        System.out.println("|   2. delete                                   |");
+        System.out.println("|   3. quite                                    |");
+        System.out.println("|-----------------------------------------------|");
+        System.out.println();
+        System.out.print("> Please enter number of operation for OWNER: ");
+
+    }
+
     public static void InvestorMenu() {
         System.out.println("|-----------------------------------------------|");
         System.out.println("|------        INVESTOR OPERATIONS        ------|");
@@ -187,30 +188,6 @@ public class CPIT251Project {
         System.out.println("|-----------------------------------------------|");
         System.out.println();
         System.out.print("> Please enter number of operation for STAFF: ");
-
-    }
-
-    public static void SubmitFileIdea(Scanner in) {
-        System.out.println("Enter the number of file idea that you want to added: ");
-        NoFileIdea = in.nextInt();
-        for (int i = 1; i <= NoFileIdea; i++) {
-            // Display and write the file number
-            String firstLine = "File number: " + i;
-            System.out.println(firstLine);
-            // Prompt the user to enter the owner's name, idea name, and description
-            System.out.println("Enter your name as owner idea: ");
-            OwnerName = in.next();
-            System.out.println("Enter the idea name: ");
-            IdeaName = in.next();
-            System.out.println("Enter describtion of idea: ");
-            desc = in.next();
-            // Create a new file with the provided information
-            file = new CreateFile(IdeaName, desc, OwnerName);
-            // Add the file to the list of file ideas
-            fileIdeas.add(file);
-            // Display a success message for adding the idea
-            System.out.println("Succuessful added the idea! ");
-        }
 
     }
 
@@ -240,7 +217,7 @@ public class CPIT251Project {
         fileIdeas.get(indexFile).ChangeFavoriteIdea();
 
         // Create a new file object with the updated information
-        file = new CreateFile(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
+        file = new FileMangmant(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
 
     }
 
@@ -254,7 +231,7 @@ public class CPIT251Project {
         System.out.println("Successful added in accepted file");
 
         // Create a new file instance with the idea's details
-        file = new CreateFile(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
+        file = new FileMangmant(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
 
     }
 
