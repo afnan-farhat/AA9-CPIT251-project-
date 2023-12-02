@@ -140,7 +140,7 @@ public class Main {
                     operationNum = in.nextInt();
                     if (operationNum == 1) {
                         // If the user chooses to change the idea state, invoke the Acceptance method
-                        Acceptance(operationNum, in);
+                 Staff.UpdateState(in,operationNum,file, fileIdeas);  
                     } else {
                         // If the user chooses to quit the staff job, exit the loop
                         Quite("staff");
@@ -195,20 +195,6 @@ public class Main {
  
 //Add ideas to Favorite place
 
-
-    public static void Acceptance(int operationNum, Scanner in) {
-        // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
-        int indexFile = FileMangmant.DisplayIdeaFile(in,fileIdeas);
-
-        // Change the state of the selected idea to indicate it has been accepted
-        fileIdeas.get(indexFile).ChangeStateIdea();
-        // Print a success message to the console
-        System.out.println("Successful added in accepted file");
-
-        // Create a new file instance with the idea's details
-        file = new FileMangmant(IdeaName, desc, OwnerName, fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
-
-    }
 
 
     public static void Quite(String job) {

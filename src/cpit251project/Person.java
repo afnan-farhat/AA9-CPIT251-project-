@@ -10,5 +10,13 @@ package cpit251project;
  * @author Afnan
  */
 public abstract class Person {
-    
+
+    private static String Fname;
+    private static String Lname;
+    private static String Username;
+    private static String Password;
+    private static String ID;
+    private static int PhoneNum;
+    private static String Email;
+
 }

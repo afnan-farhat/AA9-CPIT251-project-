@@ -146,7 +146,7 @@ public class CPIT251ProjectIT {
         System.out.println("DeleteFileIdea");
         Scanner in = null;
         ArrayList<FileMangmant> fileIdeas = null;
-        Owner.DeleteFileIdea(in,fileIdeas);
+        Owner.DeleteFileIdea(in, fileIdeas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -158,7 +158,9 @@ public class CPIT251ProjectIT {
     public void testAddFavoriteIdea() {
         System.out.println("AddFavoriteIdea");
         Scanner in = null;
-        Main.AddFavoriteIdea(in);
+        FileMangmant file = null;
+        ArrayList<FileMangmant> fileIdeas = null;
+        Investor.AddFavoriteIdea(in, fileIdeas, file);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -171,7 +173,9 @@ public class CPIT251ProjectIT {
         System.out.println("Acceptance");
         int operationNum = 0;
         Scanner in = null;
-        Main.Acceptance(operationNum, in);
+        FileMangmant file = null;
+        ArrayList<FileMangmant> fileIdeas = null;
+        Staff.UpdateState(in, operationNum, file, fileIdeas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -185,7 +189,7 @@ public class CPIT251ProjectIT {
         Scanner in = null;
         int expResult = 0;
         ArrayList<FileMangmant> fileIdeas = null;
-        int result = FileMangmant.DisplayIdeaFile(in,fileIdeas);
+        int result = FileMangmant.DisplayIdeaFile(in, fileIdeas);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
