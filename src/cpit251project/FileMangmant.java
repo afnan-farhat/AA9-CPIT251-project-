@@ -1,7 +1,6 @@
 
 package cpit251project;
 
-import static cpit251project.Main.DeleteFileIdea;
 import static cpit251project.Main.Quite;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
@@ -92,6 +91,23 @@ public class FileMangmant {
         } else {
             System.out.println("The idea wss Reject");
         }
+    }
+    
+    
+    //Displays all file ideas and returns the index of the selected file idea
+    public static int DisplayIdeaFile(Scanner in, ArrayList<FileMangmant> fileIdeas) {
+        //Display all file in (Ideas File)
+        for (int i = 0; i < fileIdeas.size(); i++) {
+            System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
+        }
+        // Prompt the user to enter the number of the file idea they want to select
+        System.out.println("Enter the number of file that you want: ");
+        int selectedFile = in.nextInt();
+        // Calculate the index based on the user's selection
+        int indexFile = selectedFile - 1;
+        // Return the index of the selected file idea
+        return indexFile;
+
     }
 
     

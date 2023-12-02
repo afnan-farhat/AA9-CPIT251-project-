@@ -82,7 +82,7 @@ public class Main {
                     Owner.SubmitFileIdea(in, NoFileIdea, file, fileIdeas);
                 } else if (operationNum == 2) {
                     // If the user chooses to delete a file idea, invoke the DeleteFileIdea method
-                    DeleteFileIdea(in);
+                    Owner.DeleteFileIdea(in,fileIdeas);
                 } else {
                     // If the user chooses to quit the owner job, exit the loop
                     Quite("owner");
@@ -192,27 +192,12 @@ public class Main {
 
     }
 
-    //Deletes a file idea from the list of fileIdeas
-    public static void DeleteFileIdea(Scanner in) {
-        // Check if the list of fileIdeas is empty
-        if (fileIdeas.isEmpty()) {
-            System.out.println("the file is empty");
-        } else {
-
-            // Display the list of file ideas and get the index to delete
-            int indexFile = DisplayIdeaFile(in); // call DisplayIdeaFile method
-            // Remove the file idea at the specified index
-            fileIdeas.remove(indexFile);
-            System.out.println("Succuessful deleted the file idea!");
-
-        }
-
-    }
+ 
 //Add ideas to Favorite place
 
     public static void AddFavoriteIdea(Scanner in) {
         // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
-        int indexFile = DisplayIdeaFile(in);
+        int indexFile = FileMangmant.DisplayIdeaFile(in,fileIdeas);
 
         // Update the favorite status of the selected file
         fileIdeas.get(indexFile).ChangeFavoriteIdea();
@@ -224,7 +209,7 @@ public class Main {
 
     public static void Acceptance(int operationNum, Scanner in) {
         // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
-        int indexFile = DisplayIdeaFile(in);
+        int indexFile = FileMangmant.DisplayIdeaFile(in,fileIdeas);
 
         // Change the state of the selected idea to indicate it has been accepted
         fileIdeas.get(indexFile).ChangeStateIdea();
@@ -236,21 +221,6 @@ public class Main {
 
     }
 
-    //Displays all file ideas and returns the index of the selected file idea
-    public static int DisplayIdeaFile(Scanner in) {
-        //Display all file in (Ideas File)
-        for (int i = 0; i < fileIdeas.size(); i++) {
-            System.out.println("File number " + (i + 1) + "\tIdea name: " + fileIdeas.get(i).getIdeaName());
-        }
-        // Prompt the user to enter the number of the file idea they want to select
-        System.out.println("Enter the number of file that you want: ");
-        int selectedFile = in.nextInt();
-        // Calculate the index based on the user's selection
-        int indexFile = selectedFile - 1;
-        // Return the index of the selected file idea
-        return indexFile;
-
-    }
 
     public static void Quite(String job) {
         System.out.println("Quite the operation of " + job);

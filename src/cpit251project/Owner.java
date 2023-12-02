@@ -5,7 +5,6 @@
  */
 package cpit251project;
 
-import static cpit251project.Main.DeleteFileIdea;
 import static cpit251project.Main.Quite;
 //import static cpit251project.Main.SubmitFileIdea;
 import java.util.ArrayList;
@@ -34,6 +33,24 @@ public class Owner extends Person {
             fileIdeas.add(file);
             // Display a success message for adding the idea
             System.out.println("Succuessful added the idea! ");
+        }
+
+    }
+    
+       //Deletes a file idea from the list of fileIdeas
+    public static void DeleteFileIdea(Scanner in,ArrayList<FileMangmant> fileIdeas) {
+        // Check if the list of fileIdeas is empty
+        
+        if (fileIdeas.isEmpty()) {
+            System.out.println("the file is empty");
+        } else {
+
+            // Display the list of file ideas and get the index to delete
+            int indexFile = FileMangmant.DisplayIdeaFile(in,fileIdeas); // call DisplayIdeaFile method
+            // Remove the file idea at the specified index
+            fileIdeas.remove(indexFile);
+            System.out.println("Succuessful deleted the file idea!");
+
         }
 
     }

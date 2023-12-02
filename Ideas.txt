@@ -3,9 +3,9 @@
 
 The number of file: 1
  ------------------------------------------
-Idea: d
-description: s
-Ownername: s
+Idea: D
+description: FD
+Ownername: J
 State: waiting
 Favorite: false
 

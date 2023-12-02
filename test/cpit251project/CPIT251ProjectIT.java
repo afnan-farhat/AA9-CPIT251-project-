@@ -145,7 +145,8 @@ public class CPIT251ProjectIT {
     public void testDeleteFileIdea() {
         System.out.println("DeleteFileIdea");
         Scanner in = null;
-        Main.DeleteFileIdea(in);
+        ArrayList<FileMangmant> fileIdeas = null;
+        Owner.DeleteFileIdea(in,fileIdeas);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -183,7 +184,8 @@ public class CPIT251ProjectIT {
         System.out.println("DisplayIdeaFile");
         Scanner in = null;
         int expResult = 0;
-        int result = Main.DisplayIdeaFile(in);
+        ArrayList<FileMangmant> fileIdeas = null;
+        int result = FileMangmant.DisplayIdeaFile(in,fileIdeas);
         assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
