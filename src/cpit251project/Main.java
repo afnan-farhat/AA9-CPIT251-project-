@@ -110,7 +110,7 @@ public class Main {
                     operationNum = in.nextInt();
                     if (operationNum == 1) {
                         // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
-                        AddFavoriteIdea(in);
+                        Investor.AddFavoriteIdea(in, fileIdeas, file);
                     } else {
                         // If the user chooses any other operation, exit the specified job
                         Quite("investor");
@@ -195,17 +195,6 @@ public class Main {
  
 //Add ideas to Favorite place
 
-    public static void AddFavoriteIdea(Scanner in) {
-        // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
-        int indexFile = FileMangmant.DisplayIdeaFile(in,fileIdeas);
-
-        // Update the favorite status of the selected file
-        fileIdeas.get(indexFile).ChangeFavoriteIdea();
-
-        // Create a new file object with the updated information
-        file = new FileMangmant(IdeaName, desc, OwnerName, file.getFavoriteState(), file.getState());
-
-    }
 
     public static void Acceptance(int operationNum, Scanner in) {
         // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
