@@ -66,6 +66,7 @@ public class Main {
         System.out.println();
         System.out.print("> Please enter your job: ");
 
+        
     }
 
     public static void OwnerOperation(Scanner in, int operationNum, int NoFileIdea, FileMangmant file, ArrayList<FileMangmant> fileIdeas) {
