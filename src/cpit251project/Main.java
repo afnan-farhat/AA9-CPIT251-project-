@@ -11,8 +11,8 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static ArrayList<FileMangmant> fileIdeas = new ArrayList<>();
-    private static FileMangmant file = new FileMangmant();
+    private static ArrayList<FileMangmant> fileMangment = new ArrayList<>();
+    private static FileMangmant fileIdea = new FileMangmant();
     private static String OwnerName;
     private static String desc;
     private static String IdeaName;
@@ -34,7 +34,7 @@ public class Main {
 
             // Check if the job is related to "Owner"
             if ("Owner".equalsIgnoreCase(job) || "1".equals(job)) {
-                OwnerOperation(in, operationNum, NoFileIdea, file, fileIdeas);
+                OwnerOperation(in, operationNum, NoFileIdea, fileIdea, fileMangment);
             } else if ("Investor".equalsIgnoreCase(job) || "2".equals(job)) {
                 InvestorOperation(in);
             } else if ("Staff".equalsIgnoreCase(job) || "3".equals(job)) {
@@ -42,7 +42,7 @@ public class Main {
             } else if ("Stop".equalsIgnoreCase(job) || "4".equals(job)) {
                 // Execute the following block for "Stop" job
                 // Save data to file and exit the program
-                writeOnFile();
+                FileMangmant.writeOnFile(fileMangment);
                 System.exit(0);
             } else {
                 // Handle the default case if none of the specified conditions are met
@@ -85,7 +85,7 @@ public class Main {
                     Owner.DeleteFileIdea(in,fileIdeas);
                 } else {
                     // If the user chooses to quit the owner job, exit the loop
-                    Quite("owner");
+                    FileMangmant.Quite("owner");
                 }
             } catch (InputMismatchException e) {
                 // Handle InputMismatchException (non-integer input)
@@ -98,7 +98,7 @@ public class Main {
 
     public static void InvestorOperation(Scanner in) {
         // Check if the list of file ideas is empty
-        if (fileIdeas.isEmpty()) {
+        if (fileMangment.isEmpty()) {
             System.out.println("The file is empty");
         } else {
             // Execute the following block for "Investor" job
@@ -110,10 +110,10 @@ public class Main {
                     operationNum = in.nextInt();
                     if (operationNum == 1) {
                         // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
-                        Investor.AddFavoriteIdea(in, fileIdeas, file);
+                        Investor.AddFavoriteIdea(in, fileMangment, fileIdea);
                     } else {
                         // If the user chooses any other operation, exit the specified job
-                        Quite("investor");
+                        FileMangmant.Quite("investor");
                     }
                 } catch (InputMismatchException e) {
                     // Handle InputMismatchException (non-integer input)
@@ -128,7 +128,7 @@ public class Main {
 
     public static void StaffOperation(Scanner in) {
         // Check if the list of file ideas is empty
-        if (fileIdeas.isEmpty()) {
+        if (fileMangment.isEmpty()) {
             System.out.println("The file is empty");
         } else {
             // Execute the following block for "Staff" job
@@ -140,10 +140,10 @@ public class Main {
                     operationNum = in.nextInt();
                     if (operationNum == 1) {
                         // If the user chooses to change the idea state, invoke the Acceptance method
-                 Staff.UpdateState(in,operationNum,file, fileIdeas);  
+                 Staff.UpdateState(in,operationNum,fileIdea, fileMangment);  
                     } else {
                         // If the user chooses to quit the staff job, exit the loop
-                        Quite("staff");
+                        FileMangmant.Quite("staff");
                     }
                 } catch (InputMismatchException e) {
                     // Handle InputMismatchException (non-integer input)
@@ -192,40 +192,5 @@ public class Main {
 
     }
 
- 
-//Add ideas to Favorite place
-
-
-
-    public static void Quite(String job) {
-        System.out.println("Quite the operation of " + job);
-
-    }
-
-    public static void writeOnFile() throws FileNotFoundException {
-        // Create a PrintWriter to write to the "Ideas.txt" file
-        PrintWriter PrintInFile = new PrintWriter("Ideas.txt");
-
-        // Write header and spacing to the file
-        PrintInFile.println(" --------------- IDEA FILES ---------------");
-        PrintInFile.println("\n");
-
-        // Iterate through the list of fileIdeas
-        for (int i = 0; i < fileIdeas.size(); i++) {
-            // Write the file number and separator to the file
-            PrintInFile.println("The number of file: " + (i + 1));
-            PrintInFile.println(" ------------------------------------------");
-
-            // Write the information of the current file idea to the file
-            PrintInFile.println(fileIdeas.get(i).toString());
-            PrintInFile.println(); // Add an empty line for better readability
-        }
-
-        // Display success message
-        System.out.println("Successfully added the ideas!");
-        // Close the PrintWriter and flush the output to the file
-        PrintInFile.close();
-        PrintInFile.flush();
-    }
 
 }

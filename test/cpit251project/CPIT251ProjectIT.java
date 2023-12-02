@@ -202,7 +202,7 @@ public class CPIT251ProjectIT {
     public void testQuite() {
         System.out.println("Quite");
         String job = "";
-        Main.Quite(job);
+        FileMangmant.Quite(job);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -213,7 +213,8 @@ public class CPIT251ProjectIT {
     @Test
     public void testWriteOnFile() throws Exception {
         System.out.println("writeOnFile");
-        Main.writeOnFile();
+        ArrayList<FileMangmant> fileMangment = null;
+        FileMangmant.writeOnFile(fileMangment);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

@@ -5,7 +5,6 @@
  */
 package cpit251project;
 
-import static cpit251project.Main.Quite;
 //import static cpit251project.Main.SubmitFileIdea;
 import java.util.ArrayList;
 import java.util.InputMismatchException;

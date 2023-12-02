@@ -1,11 +1,10 @@
-
 package cpit251project;
 
-import static cpit251project.Main.Quite;
+import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
-
 
 public class FileMangmant {
 
@@ -92,8 +91,7 @@ public class FileMangmant {
             System.out.println("The idea wss Reject");
         }
     }
-    
-    
+
     //Displays all file ideas and returns the index of the selected file idea
     public static int DisplayIdeaFile(Scanner in, ArrayList<FileMangmant> fileIdeas) {
         //Display all file in (Ideas File)
@@ -110,7 +108,37 @@ public class FileMangmant {
 
     }
 
-    
+    public static void Quite(String job) {
+        System.out.println("Quite the operation of " + job);
+
+    }
+
+    public static void writeOnFile(ArrayList<FileMangmant> fileMangment) throws FileNotFoundException {
+        // Create a PrintWriter to write to the "Ideas.txt" file
+        PrintWriter PrintInFile = new PrintWriter("Ideas.txt");
+
+        // Write header and spacing to the file
+        PrintInFile.println(" --------------- IDEA FILES ---------------");
+        PrintInFile.println("\n");
+
+        // Iterate through the list of fileIdeas
+        for (int i = 0; i < fileMangment.size(); i++) {
+            // Write the file number and separator to the file
+            PrintInFile.println("The number of file: " + (i + 1));
+            PrintInFile.println(" ------------------------------------------");
+
+            // Write the information of the current file idea to the file
+            PrintInFile.println(fileMangment.get(i).toString());
+            PrintInFile.println(); // Add an empty line for better readability
+        }
+
+        // Display success message
+        System.out.println("Successfully added the ideas!");
+        // Close the PrintWriter and flush the output to the file
+        PrintInFile.close();
+        PrintInFile.flush();
+    }
+
     @Override
     public String toString() {
         return "Idea: " + IdeaName + "\n" + "description: " + description + "\nOwnername: " + OwnerName + "\nState: "

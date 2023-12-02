@@ -3,10 +3,19 @@
 
 The number of file: 1
  ------------------------------------------
+Idea: s
+description: s
+Ownername: s
+State: waiting
+Favorite: false
+
+
+The number of file: 2
+ ------------------------------------------
 Idea: g
 description: g
 Ownername: g
 State: waiting
-Favorite: true
+Favorite: false
 
 
