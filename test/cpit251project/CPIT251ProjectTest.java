@@ -5,6 +5,8 @@
  */
 package cpit251project;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import org.junit.After;
@@ -42,8 +44,40 @@ public class CPIT251ProjectTest {
     /* Test of SubmitFileIdea method, of class CPIT251Project.
      */
     @Test
-    public void testSubmitFileIdea_checkDescriptionLength() {
-        FileMangmant file = new FileMangmant("pickup and walk", "Enhance your university experience with our app,"
+    public void test_SubmitFileIdea() throws FileNotFoundException {
+
+        // Arrange
+        ArrayList<FileMangmant> fileMangment = new ArrayList<>();
+        // Add some sample FileMangmant objects to the list
+
+        // Act
+        try {
+            Main.writeOnFile(fileMangment);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+
+        // Assert
+        // Verify that the file "Ideas.txt" has been created and contains expected content
+        File ideasFile = new File("Ideas.txt");
+        assertTrue( "File should exist", ideasFile.exists());
+
+        // Read the content of the file
+        try (Scanner scanner = new Scanner(ideasFile)) {
+            // Perform assertions on the file content based on your expectations
+            // For example, you can check if the file contains specific lines or patterns
+            assertTrue(scanner.nextLine().contains(" --------------- IDEA FILES ---------------"));
+            assertTrue(scanner.nextLine().isEmpty()); // Empty line after the header
+
+            // Add more assertions based on your file writing logic
+        } catch (FileNotFoundException e) {
+            e.printStackTrace(); // Handle the exception appropriately
+        }
+    }
+
+    @Test
+    public void checkDescriptionLength() {
+        Ideas file = new Ideas("pickup and walk", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats."
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", "ghada mohammed alshehri");
@@ -54,8 +88,8 @@ public class CPIT251ProjectTest {
     }
 
     @Test
-    public void testSubmitFileIdea_checkOwnerNameIsNotString() {
-        FileMangmant file = new FileMangmant("pickup and walk", "Enhance your university experience with our app,"
+    public void checkOwnerNameIsNotString() {
+        Ideas file = new Ideas("pickup and walk", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats."
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", "Layan 1234");
@@ -69,8 +103,8 @@ public class CPIT251ProjectTest {
      * Test of DeleteFileIdea method, of class CPIT251Project.
      */
     @Test
-    public void testDeleteFileIdea_CheckExistenceFile() {
-        FileMangmant FileIdea = new FileMangmant("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+    public void CheckExistenceFile() {
+        Ideas FileIdea = new Ideas("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats."
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", true, "Accept");
@@ -78,31 +112,36 @@ public class CPIT251ProjectTest {
     }
 
     @Test
-    public void testDeleteFileIdea_DeleteFileIdea() {
-        ArrayList<FileMangmant> fileIdeas = new ArrayList<>();
+    public void DeleteFileIdea() {
+        ArrayList<FileMangmant> fileMangment = new ArrayList<>();
 
         // Crreat some file ideas for testing
-        FileMangmant file1 = new FileMangmant("Community Volunteer Hub", "An online platform connecting volunteers with local community projects, making it easy for individuals to find and contribute to causes they care about.", "Afnan Tariq Farhat");
-        FileMangmant file2 = new FileMangmant("Joyful Sweets", "Description2", "Marya Fawaz Marzuq");
-        FileMangmant file3 = new FileMangmant("Language Learning Game", "A gamified language learning app that uses interactive games and quizzes to make the language learning process fun and engaging for users of all ages.", "Layan Salim Aljohani");
-        FileMangmant file4 = new FileMangmant("VR Home Fitness", "A virtual reality fitness system for home use, providing immersive workouts in various virtual environments. It features AI-driven personalization, virtual trainers, and social connectivity for engaging exercise experiences.", "Ghada Mohmmed Alshehri");
+        Ideas file1 = new Ideas("Community Volunteer Hub", "An online platform connecting volunteers with local community projects, making it easy for individuals to find and contribute to causes they care about.", "Afnan Tariq Farhat");
+        Ideas file2 = new Ideas("Joyful Sweets", "Description2", "Marya Fawaz Marzuq");
+        Ideas file3 = new Ideas("Language Learning Game", "A gamified language learning app that uses interactive games and quizzes to make the language learning process fun and engaging for users of all ages.", "Layan Salim Aljohani");
+        Ideas file4 = new Ideas("VR Home Fitness", "A virtual reality fitness system for home use, providing immersive workouts in various virtual environments. It features AI-driven personalization, virtual trainers, and social connectivity for engaging exercise experiences.", "Ghada Mohmmed Alshehri");
+
+        FileMangmant file_mng1 = new FileMangmant(file1);
+        FileMangmant file_mng2 = new FileMangmant(file2);
+        FileMangmant file_mng3 = new FileMangmant(file3);
+        FileMangmant file_mng4 = new FileMangmant(file4);
 
         // Add some file ideas for testing
-        fileIdeas.add(0, file1);
-        fileIdeas.add(1, file2);
-        fileIdeas.add(2, file3);
-        fileIdeas.add(3, file4);
+        fileMangment.add(0, file_mng1);
+        fileMangment.add(1, file_mng2);
+        fileMangment.add(2, file_mng3);
+        fileMangment.add(3, file_mng4);
 
         // Delete file from Idea File
-        fileIdeas.remove(0);
+        fileMangment.remove(0);
 
-        // Check if the fileIdeas list is empty after deletion
-        assertFalse(fileIdeas.indexOf(file1) == 0);
+        // Check if the fileMangment list is empty after deletion
+        assertFalse(fileMangment.indexOf(file1) == 0);
     }
 
     @Test
-    public void testAddFavoriteIdea_TheIdeaNotFav() {
-        FileMangmant FAV_IDEA = new FileMangmant("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+    public void testTheIdeaNotFavorite() {
+        Ideas FAV_IDEA = new Ideas("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats."
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", false, "Accept");
@@ -113,26 +152,27 @@ public class CPIT251ProjectTest {
     }
 
     @Test
-    public void testAddFavoriteIdea_ChangeFavIdea() {
-        FileMangmant FAV_IDEA = new FileMangmant("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+    public void testChangeFavoraiteIdea() {
+        Ideas FAV_IDEA = new Ideas("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats."
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", false, "Accept");
 
-        FAV_IDEA.ChangeFavoriteIdea();
+        FileMangmant file_mng = new FileMangmant(FAV_IDEA);
+        file_mng.ChangeFavoriteIdea();
         boolean ExpectedValue = true;
         assertSame(FAV_IDEA.getFavoriteState(), ExpectedValue);
 
     }
-    
 
     /**
      * Test of Acceptance method, of class CPIT251Project.
      */
-      @Test
-    public void testAcceptance_IsWaiting() {
+    @Test
+    public void testStateIsWaiting() {
 
-        System.out.println("ChangeStateIdea"); FileMangmant IDEAinfo = new FileMangmant("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+        System.out.println("ChangeStateIdea");
+        Ideas IDEAinfo = new Ideas("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats. Our cafe is the perfect blend of good vibes and seamless conversations.");;
         String currentState = IDEAinfo.getState();
@@ -142,20 +182,20 @@ public class CPIT251ProjectTest {
     }
 
     @Test
-    public void testAcceptance_ChangeAcceptedState() {
+    public void testChangeAcceptedState() {
         System.out.println("ChangeStateIdea");
 
-        FileMangmant IDEAinfo = new FileMangmant("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+        Ideas IDEAinfo = new Ideas("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
                 + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
                 + " savor top-notch coffee, and indulge in a variety of delightful treats. Our cafe is the perfect blend of good vibes and seamless conversations.");;
 
-        IDEAinfo.ChangeStateIdea();
+        FileMangmant file_mng = new FileMangmant(IDEAinfo);
+
+        file_mng.ChangeStateIdea();
         String result = IDEAinfo.getState();
         String expResult = "Accept";
 
         assertEquals(expResult, result, "Accept");
     }
-
-
 
 }

@@ -6,15 +6,15 @@ import java.util.Scanner;
 public class Investor {
 
     //Add ideas to Favorite place
-    public static void AddFavoriteIdea(Scanner in, ArrayList<FileMangmant> fileIdeas, FileMangmant file) {
+    public static void AddFavoriteIdea(Scanner in, ArrayList<FileMangmant> fileMangment, Ideas fileIdea) {
         // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
-        int indexFile = FileMangmant.DisplayIdeaFile(in, fileIdeas);
+        int indexFile = FileMangmant.DisplayIdeaFile(in, fileMangment);
 
         // Update the favorite status of the selected file
-        fileIdeas.get(indexFile).ChangeFavoriteIdea();
+        fileMangment.get(indexFile).ChangeFavoriteIdea();
 
         // Create a new file object with the updated information
-        file = new FileMangmant(file.getIdeaName(), file.getOwnerName(), file.getDescription(), file.getFavoriteState(), file.getState());
+        fileIdea = new Ideas(fileIdea.getIdeaName(), fileIdea.getOwnerName(), fileIdea.getDescription(), fileIdea.getFavoriteState(), fileIdea.getState());
 
     }
 

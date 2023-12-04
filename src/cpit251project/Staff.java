@@ -14,17 +14,18 @@ import java.util.Scanner;
  */
 public class Staff extends Person{
     
-     public static void UpdateState(Scanner in,int operationNum,FileMangmant file,ArrayList<FileMangmant> fileIdeas) {
+     public static void UpdateState(Scanner in,int operationNum,Ideas fileIdea,ArrayList<FileMangmant> fileMangment) {
         // Call DisplayIdeaFile method to display all ideas and get the index of the selected file
-        int indexFile =FileMangmant.DisplayIdeaFile(in,fileIdeas);
+        int indexFile =FileMangmant.DisplayIdeaFile(in,fileMangment);
 
         // Change the state of the selected idea to indicate it has been accepted
-        fileIdeas.get(indexFile).ChangeStateIdea();
+        fileMangment.get(indexFile).ChangeStateIdea();
         // Print a success message to the console
         System.out.println("Successful added in accepted file");
 
         // Create a new file instance with the idea's details
-        file = new FileMangmant(file.getIdeaName(), file.getDescription(),file.getOwnerName(), fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
+        //file = new Ideas(file.getIdeaName(), file.getDescription(),file.getOwnerName(), fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
+        fileIdea = new Ideas(fileIdea.getIdeaName(), fileIdea.getDescription(),fileIdea.getOwnerName(), fileIdea.getFavoriteState(), fileIdea.getState());
 
     }
 }

@@ -1,6 +1,5 @@
 package cpit251project;
 
-//import static cpit251project.FileMangmant.SubmitFileIdea;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -12,12 +11,7 @@ import java.util.Scanner;
 public class Main {
 
     private static ArrayList<FileMangmant> fileMangment = new ArrayList<>();
-    private static FileMangmant fileIdea = new FileMangmant();
-    private static String OwnerName;
-    private static String desc;
-    private static String IdeaName;
-    private static String FavIdea;
-    private static String Acceptance;
+    private static Ideas fileIdea = new Ideas();
     private static int NoFileIdea;
     private static int operationNum;
 
@@ -42,7 +36,7 @@ public class Main {
             } else if ("Stop".equalsIgnoreCase(job) || "4".equals(job)) {
                 // Execute the following block for "Stop" job
                 // Save data to file and exit the program
-                FileMangmant.writeOnFile(fileMangment);
+                writeOnFile(fileMangment);
                 System.exit(0);
             } else {
                 // Handle the default case if none of the specified conditions are met
@@ -66,10 +60,9 @@ public class Main {
         System.out.println();
         System.out.print("> Please enter your job: ");
 
-        
     }
 
-    public static void OwnerOperation(Scanner in, int operationNum, int NoFileIdea, FileMangmant file, ArrayList<FileMangmant> fileIdeas) {
+    public static void OwnerOperation(Scanner in, int operationNum, int NoFileIdea, Ideas fileIdea, ArrayList<FileMangmant> fileMangment) {
         // Execute the following block for "Owner" job
         do {
             try {
@@ -79,10 +72,15 @@ public class Main {
                 operationNum = in.nextInt();
                 if (operationNum == 1) {
                     // If the user chooses to add a file idea, invoke the SubmitFileIdea method
-                    Owner.SubmitFileIdea(in, NoFileIdea, file, fileIdeas);
+                    Owner.SubmitFileIdea(in, NoFileIdea, fileIdea, fileMangment);
+//                    for (int i = 0; i < fileMangment.size(); i++) {
+//                        System.out.println("File number " + (i + 1) + "\tIdea name: " + fileMangment.get(i).getIdeaName());
+//                    }
+                    //System.out.println(Arrays.toString(fileMangment.toArray()));
+
                 } else if (operationNum == 2) {
                     // If the user chooses to delete a file idea, invoke the DeleteFileIdea method
-                    Owner.DeleteFileIdea(in,fileIdeas);
+                    Owner.DeleteFileIdea(in, fileMangment);
                 } else {
                     // If the user chooses to quit the owner job, exit the loop
                     FileMangmant.Quite("owner");
@@ -140,7 +138,7 @@ public class Main {
                     operationNum = in.nextInt();
                     if (operationNum == 1) {
                         // If the user chooses to change the idea state, invoke the Acceptance method
-                 Staff.UpdateState(in,operationNum,fileIdea, fileMangment);  
+                        Staff.UpdateState(in, operationNum, fileIdea, fileMangment);
                     } else {
                         // If the user chooses to quit the staff job, exit the loop
                         FileMangmant.Quite("staff");
@@ -191,6 +189,31 @@ public class Main {
         System.out.print("> Please enter number of operation for STAFF: ");
 
     }
+  public static void writeOnFile(ArrayList<FileMangmant> fileMangment) throws FileNotFoundException {
+        // Create a PrintWriter to write to the "Ideas.txt" file
+        File IdeasFile = new File ("Ideas.txt");
+        PrintWriter PrintInFile = new PrintWriter(IdeasFile);
 
+        // Write header and spacing to the file
+        PrintInFile.println(" --------------- IDEA FILES ---------------");
+        PrintInFile.println("\n");
+
+        // Iterate through the list of fileIdeas
+        for (int i = 0; i < fileMangment.size(); i++) {
+            // Write the file number and separator to the file
+            PrintInFile.println("The number of file: " + (i + 1));
+            PrintInFile.println(" ------------------------------------------");
+
+            // Write the information of the current file idea to the file
+            PrintInFile.println(fileMangment.get(i).toString());
+            PrintInFile.println(); // Add an empty line for better readability
+        }
+
+        // Display success message
+        System.out.println("Successfully added the ideas!");
+        // Close the PrintWriter and flush the output to the file
+        PrintInFile.close();
+        PrintInFile.flush();
+    }
 
 }
