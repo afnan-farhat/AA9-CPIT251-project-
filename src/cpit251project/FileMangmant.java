@@ -12,7 +12,8 @@ public class FileMangmant extends Ideas{
     private  Ideas ideas;
 
     public FileMangmant(Ideas ideas) {
-        this.ideas =ideas;
+          super(ideas.getIdeaName(), ideas.getDescription(), ideas.getOwnerName(), ideas.getFavoriteState(), ideas.getState());
+        this.ideas = ideas;
     }
 
     public void ChangeFavoriteIdea() {

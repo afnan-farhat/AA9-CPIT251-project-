@@ -1,14 +1,12 @@
-
 package cpit251project;
 
+public class Ideas {
 
-public class Ideas{
-
-   private static String IdeaName;
-    private static String description;
-    private static String OwnerName;
-    private static boolean favoriteState;
-    private static String state;
+    private String IdeaName;
+    private String description;
+    private String OwnerName;
+    private boolean favoriteState;
+    private String state;
 
     Ideas() {
     }
@@ -29,44 +27,43 @@ public class Ideas{
         this.state = state;
     }
 
-
-    public  String getIdeaName() {
+    public String getIdeaName() {
         return IdeaName;
     }
 
-    public  String getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public  String getOwnerName() {
+    public String getOwnerName() {
         return OwnerName;
     }
 
-    public  void setIdeaName(String IdeaName) {
+    public void setIdeaName(String IdeaName) {
         this.IdeaName = IdeaName;
     }
 
-    public  void setDescription(String description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
-    public  void setOwnerName(String OwnerName) {
+    public void setOwnerName(String OwnerName) {
         this.OwnerName = OwnerName;
     }
 
-    public static boolean getFavoriteState() {
+    public boolean getFavoriteState() {
         return favoriteState;
     }
 
-    public static String getState() {
+    public String getState() {
         return state;
     }
 
-    public  void setFavoriteState(boolean favoriteState) {
+    public void setFavoriteState(boolean favoriteState) {
         this.favoriteState = favoriteState;
     }
 
-    public  void setState(String state) {
+    public void setState(String state) {
         this.state = state;
     }
 }
