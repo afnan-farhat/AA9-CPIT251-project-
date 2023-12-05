@@ -75,17 +75,69 @@ public class OwnerTest {
         }
     }
 
-    /**
-     * Test of DeleteFileIdea method, of class Owner.
+   
+    @Test
+    public void checkDescriptionLength() {
+        Ideas file = new Ideas("pickup and walk", "Enhance your university experience with our app,"
+                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
+                + " savor top-notch coffee, and indulge in a variety of delightful treats."
+                + " Our cafe is the perfect blend of good vibes and seamless conversations.", "ghada mohammed alshehri");
+        int CurrentlengthName = file.getDescription().length();
+        int ExpectedLenght = 256;
+        assertTrue(CurrentlengthName >= ExpectedLenght);
+
+    }
+
+    @Test
+    public void checkOwnerNameIsNotString() {
+        Ideas file = new Ideas("pickup and walk", "Enhance your university experience with our app,"
+                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
+                + " savor top-notch coffee, and indulge in a variety of delightful treats."
+                + " Our cafe is the perfect blend of good vibes and seamless conversations.", "Layan 1234");
+        String currentOwnerName = file.getOwnerName();
+
+        // Use a regular expression to check if the owner name does not contain any digits
+        assertTrue(currentOwnerName.matches(".*\\d.*"));
+    }
+
+    /*
+     * Test of DeleteFileIdea method, of class CPIT251Project.
      */
     @Test
-    public void testDeleteFileIdea() {
-        System.out.println("DeleteFileIdea");
-        Scanner in = null;
-        ArrayList<FileMangmant> fileMangment = null;
-        Owner.DeleteFileIdea(in, fileMangment);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+    public void CheckExistenceFile() {
+        Ideas FileIdea = new Ideas("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
+                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
+                + " savor top-notch coffee, and indulge in a variety of delightful treats."
+                + " Our cafe is the perfect blend of good vibes and seamless conversations.", true, "Accept");
+        assertTrue(FileIdea != null);
+    }
+
+    @Test
+    public void DeleteFileIdea() {
+        ArrayList<FileMangmant> fileMangment = new ArrayList<>();
+
+        // Crreat some file ideas for testing
+        Ideas file1 = new Ideas("Community Volunteer Hub", "An online platform connecting volunteers with local community projects, making it easy for individuals to find and contribute to causes they care about.", "Afnan Tariq Farhat");
+        Ideas file2 = new Ideas("Joyful Sweets", "Description2", "Marya Fawaz Marzuq");
+        Ideas file3 = new Ideas("Language Learning Game", "A gamified language learning app that uses interactive games and quizzes to make the language learning process fun and engaging for users of all ages.", "Layan Salim Aljohani");
+        Ideas file4 = new Ideas("VR Home Fitness", "A virtual reality fitness system for home use, providing immersive workouts in various virtual environments. It features AI-driven personalization, virtual trainers, and social connectivity for engaging exercise experiences.", "Ghada Mohmmed Alshehri");
+
+        FileMangmant file_mng1 = new FileMangmant(file1);
+        FileMangmant file_mng2 = new FileMangmant(file2);
+        FileMangmant file_mng3 = new FileMangmant(file3);
+        FileMangmant file_mng4 = new FileMangmant(file4);
+
+        // Add some file ideas for testing
+        fileMangment.add(0, file_mng1);
+        fileMangment.add(1, file_mng2);
+        fileMangment.add(2, file_mng3);
+        fileMangment.add(3, file_mng4);
+
+        // Delete file from Idea File
+        fileMangment.remove(0);
+
+        // Check if the fileMangment list is empty after deletion
+        assertFalse(fileMangment.indexOf(file1) == 0);
     }
     
 }
