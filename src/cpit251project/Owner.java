@@ -30,10 +30,8 @@ public class Owner extends Person {
             // Create a new file with the provided information
             fileIdea = new Ideas(IdeaName, desc, OwnerName);
             FileMangmant file_mangment = new FileMangmant(fileIdea);
-            System.out.println(">>> FM: " + file_mangment);
             // Add the file to the list of file ideas
             fileMangment.add(file_mangment);
-            System.out.println(">>> arrayList: " + Arrays.toString(fileMangment.toArray()));
 
             // Display a success message for adding the idea
             System.out.println("Succuessful added the idea! ");

@@ -214,7 +214,7 @@ public class CPIT251ProjectIT {
     public void testWriteOnFile() throws Exception {
         System.out.println("writeOnFile");
         ArrayList<FileMangmant> fileMangment = null;
-        Main.writeOnFile(fileMangment);
+        FileMangmant.writeOnFile(fileMangment);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }

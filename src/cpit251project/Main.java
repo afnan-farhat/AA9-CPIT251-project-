@@ -36,7 +36,7 @@ public class Main {
             } else if ("Stop".equalsIgnoreCase(job) || "4".equals(job)) {
                 // Execute the following block for "Stop" job
                 // Save data to file and exit the program
-                writeOnFile(fileMangment);
+                FileMangmant.writeOnFile(fileMangment);
                 System.exit(0);
             } else {
                 // Handle the default case if none of the specified conditions are met
@@ -189,31 +189,6 @@ public class Main {
         System.out.print("> Please enter number of operation for STAFF: ");
 
     }
-  public static void writeOnFile(ArrayList<FileMangmant> fileMangment) throws FileNotFoundException {
-        // Create a PrintWriter to write to the "Ideas.txt" file
-        File IdeasFile = new File ("Ideas.txt");
-        PrintWriter PrintInFile = new PrintWriter(IdeasFile);
-
-        // Write header and spacing to the file
-        PrintInFile.println(" --------------- IDEA FILES ---------------");
-        PrintInFile.println("\n");
-
-        // Iterate through the list of fileIdeas
-        for (int i = 0; i < fileMangment.size(); i++) {
-            // Write the file number and separator to the file
-            PrintInFile.println("The number of file: " + (i + 1));
-            PrintInFile.println(" ------------------------------------------");
-
-            // Write the information of the current file idea to the file
-            PrintInFile.println(fileMangment.get(i).toString());
-            PrintInFile.println(); // Add an empty line for better readability
-        }
-
-        // Display success message
-        System.out.println("Successfully added the ideas!");
-        // Close the PrintWriter and flush the output to the file
-        PrintInFile.close();
-        PrintInFile.flush();
-    }
+ 
 
 }

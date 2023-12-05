@@ -52,7 +52,7 @@ public class CPIT251ProjectTest {
 
         // Act
         try {
-            Main.writeOnFile(fileMangment);
+            FileMangmant.writeOnFile(fileMangment);
         } catch (FileNotFoundException e) {
             e.printStackTrace(); // Handle the exception appropriately
         }
