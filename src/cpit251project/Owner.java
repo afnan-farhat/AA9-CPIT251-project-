@@ -16,17 +16,21 @@ public class Owner extends Person {
     public static void SubmitFileIdea(Scanner in, int NoFileIdea, Ideas fileIdea, ArrayList<FileMangmant> fileMangment) {
         System.out.println("Enter the number of file idea that you want to added: ");
         NoFileIdea = in.nextInt();
+        in.nextLine(); // Consume the newline character
+
         for (int i = 1; i <= NoFileIdea; i++) {
             // Display and write the file number
             String firstLine = "File number: " + i;
             System.out.println(firstLine);
             // Prompt the user to enter the owner's name, idea name, and description
             System.out.println("Enter your name as owner idea: ");
-            String OwnerName = in.next();
+            String OwnerName = in.nextLine();
+            
             System.out.println("Enter the idea name: ");
-            String IdeaName = in.next();
+            String IdeaName = in.nextLine();
             System.out.println("Enter describtion of idea: ");
-            String desc = in.next();
+            String desc = in.nextLine();
+
             // Create a new file with the provided information
             fileIdea = new Ideas(IdeaName, desc, OwnerName);
             FileMangmant file_mangment = new FileMangmant(fileIdea);

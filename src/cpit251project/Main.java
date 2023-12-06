@@ -73,10 +73,7 @@ public class Main {
                 if (operationNum == 1) {
                     // If the user chooses to add a file idea, invoke the SubmitFileIdea method
                     Owner.SubmitFileIdea(in, NoFileIdea, fileIdea, fileMangment);
-//                    for (int i = 0; i < fileMangment.size(); i++) {
-//                        System.out.println("File number " + (i + 1) + "\tIdea name: " + fileMangment.get(i).getIdeaName());
-//                    }
-                    //System.out.println(Arrays.toString(fileMangment.toArray()));
+//                  
 
                 } else if (operationNum == 2) {
                     // If the user chooses to delete a file idea, invoke the DeleteFileIdea method

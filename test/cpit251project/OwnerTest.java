@@ -67,7 +67,7 @@ public class OwnerTest {
             // Perform assertions on the file content based on your expectations
             // For example, you can check if the file contains specific lines or patterns
             assertTrue(scanner.nextLine().contains(" --------------- IDEA FILES ---------------"));
-            assertTrue(scanner.nextLine().isEmpty()); // Empty line after the header
+            assertTrue("Successfully added!",scanner.nextLine().isEmpty()); // Empty line after the header
 
             // Add more assertions based on your file writing logic
         } catch (FileNotFoundException e) {
