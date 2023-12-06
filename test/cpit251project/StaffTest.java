@@ -49,7 +49,7 @@ public void testUpdateStateIdea() {
     
     String currentState = IDEAinfo.getState();
     String expectCurrentState = "waiting";
-    assertEquals(expectCurrentState,currentState);
+    assertEquals("file should be waiting", expectCurrentState,currentState);
 
     // Test changing the state to "Accept"
     FileMangmant file_mng = new FileMangmant(IDEAinfo);
@@ -57,7 +57,7 @@ public void testUpdateStateIdea() {
     
     String result = IDEAinfo.getState();
     String expResult = "Accept";
-    assertEquals(expResult, result, "Accept");
+    assertEquals("Successfully added in accept files", expResult, result);
 }
 
 }

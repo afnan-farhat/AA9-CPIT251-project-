@@ -55,7 +55,7 @@ public class InvestorTest {
         FileMangmant file_mng = new FileMangmant(FAV_IDEA);
         file_mng.ChangeFavoriteIdea();
         boolean ExpectedResult = true;
-        assertSame(FAV_IDEA.getFavoriteState(), ExpectedResult);
+        assertSame("Successfully added in favorite place!", FAV_IDEA.getFavoriteState(), ExpectedResult);
 
     }
     
