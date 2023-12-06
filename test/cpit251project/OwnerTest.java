@@ -84,7 +84,7 @@ public class OwnerTest {
                 + " Our cafe is the perfect blend of good vibes and seamless conversations.", "ghada mohammed alshehri");
         int CurrentlengthName = file.getDescription().length();
         int ExpectedLenght = 256;
-        assertTrue(CurrentlengthName >= ExpectedLenght);
+        assertTrue("Successfully added!",CurrentlengthName >= ExpectedLenght);
 
     }
 
@@ -113,7 +113,7 @@ public class OwnerTest {
     }
 
     @Test
-    public void DeleteFileIdea() {
+    public void testDeleteFileIdea() {
         ArrayList<FileMangmant> fileMangment = new ArrayList<>();
 
         // Crreat some file ideas for testing
@@ -137,7 +137,7 @@ public class OwnerTest {
         fileMangment.remove(0);
 
         // Check if the fileMangment list is empty after deletion
-        assertFalse(fileMangment.indexOf(file1) == 0);
+        assertFalse("file was deleted!" ,fileMangment.indexOf(file1) == 0);
     }
     
 }
