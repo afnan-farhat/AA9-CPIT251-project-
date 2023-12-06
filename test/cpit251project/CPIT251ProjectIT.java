@@ -1,6 +1,6 @@
 /*
   
- Test first deveplopment of all methods
+ Test first deveplopment of all methods (all methods fails)
  
  */
 package cpit251project;

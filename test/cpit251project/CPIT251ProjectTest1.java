@@ -1,6 +1,6 @@
 /*
   
-  Test first deveplopment of main method
+  Test first deveplopment of main method (first test file)
   
  */
 package cpit251project;

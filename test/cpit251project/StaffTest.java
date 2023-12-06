@@ -39,8 +39,7 @@ public class StaffTest {
     public void tearDown() {
     }
     /**
- * Test methods for the functionality of changing the state of an idea in class CPIT251Project.
- */
+ * Test testUpdateStateIdea method, of class CPIT251Project.*/
 @Test
 public void testUpdateStateIdea() {
     // Test the initial state (waiting)
@@ -50,7 +49,7 @@ public void testUpdateStateIdea() {
     
     String currentState = IDEAinfo.getState();
     String expectCurrentState = "waiting";
-    assertEquals(expectCurrentState,currentState, "waiting");
+    assertEquals(expectCurrentState,currentState);
 
     // Test changing the state to "Accept"
     FileMangmant file_mng = new FileMangmant(IDEAinfo);

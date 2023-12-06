@@ -21,22 +21,22 @@ import static org.junit.Assert.*;
  * @author Afnan
  */
 public class OwnerTest {
-    
+
     public OwnerTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -46,7 +46,7 @@ public class OwnerTest {
      */
     @Test
     public void testSubmitFileIdea() {
-         // Arrange
+        // Arrange
         ArrayList<FileMangmant> fileMangment = new ArrayList<>();
         // Add some sample FileMangmant objects to the list
 
@@ -60,7 +60,7 @@ public class OwnerTest {
         // Assert
         // Verify that the file "Ideas.txt" has been created and contains expected content
         File ideasFile = new File("Ideas.txt");
-        assertTrue( "File should exist", ideasFile.exists());
+        assertTrue("File should exist", ideasFile.exists());
 
         // Read the content of the file
         try (Scanner scanner = new Scanner(ideasFile)) {
@@ -75,43 +75,10 @@ public class OwnerTest {
         }
     }
 
-   
-    @Test
-    public void checkDescriptionLength() {
-        Ideas file = new Ideas("pickup and walk", "Enhance your university experience with our app,"
-                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
-                + " savor top-notch coffee, and indulge in a variety of delightful treats."
-                + " Our cafe is the perfect blend of good vibes and seamless conversations.", "ghada mohammed alshehri");
-        int CurrentlengthName = file.getDescription().length();
-        int ExpectedLenght = 256;
-        assertTrue("Successfully added!",CurrentlengthName >= ExpectedLenght);
-
-    }
-
-    @Test
-    public void checkOwnerNameIsNotString() {
-        Ideas file = new Ideas("pickup and walk", "Enhance your university experience with our app,"
-                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
-                + " savor top-notch coffee, and indulge in a variety of delightful treats."
-                + " Our cafe is the perfect blend of good vibes and seamless conversations.", "Layan 1234");
-        String currentOwnerName = file.getOwnerName();
-
-        // Use a regular expression to check if the owner name does not contain any digits
-        assertTrue(currentOwnerName.matches(".*\\d.*"));
-    }
-
+    
     /*
      * Test of DeleteFileIdea method, of class CPIT251Project.
      */
-    @Test
-    public void CheckExistenceFile() {
-        Ideas FileIdea = new Ideas("pickup and walk", "ghada mohammed alshehri", "Enhance your university experience with our app,"
-                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
-                + " savor top-notch coffee, and indulge in a variety of delightful treats."
-                + " Our cafe is the perfect blend of good vibes and seamless conversations.", true, "Accept");
-        assertTrue(FileIdea != null);
-    }
-
     @Test
     public void testDeleteFileIdea() {
         ArrayList<FileMangmant> fileMangment = new ArrayList<>();
@@ -133,11 +100,33 @@ public class OwnerTest {
         fileMangment.add(2, file_mng3);
         fileMangment.add(3, file_mng4);
 
+        // check file exist or not 
+        assertTrue("file existence!", fileMangment.get(0) != null);
+
         // Delete file from Idea File
         fileMangment.remove(0);
 
         // Check if the fileMangment list is empty after deletion
-        assertFalse("file was deleted!" ,fileMangment.indexOf(file1) == 0);
+        assertFalse("file was deleted!", fileMangment.indexOf(file1) == 0);
     }
-    
+
+     /**
+     Additions Test method of SubmitFileIdea method, of class Owner.
+     that check on content that will add in submit file idea
+     */
+    @Test
+    public void checkContantsOfFile() {
+        Ideas file = new Ideas("pickup and walk", "Enhance your university experience with our app,"
+                + " allowing you to effortlessly order premium coffee for delivery or pickup within the university range. Immerse yourself in a welcoming atmosphere,"
+                + " savor top-notch coffee, and indulge in a variety of delightful treats."
+                + " Our cafe is the perfect blend of good vibes and seamless conversations.", "ghada mohammed alshehri");
+        int CurrentlengthName = file.getDescription().length();
+        int ExpectedLenght = 256;
+        assertTrue("Successfully added description!", CurrentlengthName >= ExpectedLenght);
+        String currentOwnerName = file.getOwnerName();
+
+        // Use a regular expression to check if the owner name does not contain any digits
+        assertFalse("Successfully added owner name!",currentOwnerName.matches(".*\\d.*"));
+    }
+
 }
