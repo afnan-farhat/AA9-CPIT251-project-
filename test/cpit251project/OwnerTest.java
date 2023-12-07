@@ -50,29 +50,26 @@ public class OwnerTest {
         ArrayList<FileMangmant> fileMangment = new ArrayList<>();
         
         // Crreat some file ideas for testing
-        Ideas file1 = new Ideas("Community Volunteer Hub", "An online platform connecting volunteers with local community projects, making it easy for individuals to find and contribute to causes they care about.", "Afnan Tariq Farhat");
-        Ideas file2 = new Ideas("Joyful Sweets", "Artistic Sweets Inspired by Cultures Worldwide: Offering a diverse range of artistically crafted sweets inspired by various cultures globally", "Marya Fawaz Marzuq");
-        
+        Ideas file1 = new Ideas("Community Volunteer Hub", "An online platform connecting volunteers with local community projects,"
+                + " making it easy for individuals to find and contribute to causes they care about.", "Afnan Tariq Farhat");
+        Ideas file2 = new Ideas("Joyful Sweets", "Artistic Sweets Inspired by Cultures Worldwide: Offering a diverse range "
+                + "of artistically crafted sweets inspired by various cultures globally", "Marya Fawaz Marzuq");
         // cast from Ideas to FileMangmant
         FileMangmant file_mng1 = new FileMangmant(file1);
         FileMangmant file_mng2 = new FileMangmant(file2);
-        
         // Add some file ideas for testing
         fileMangment.add(0, file_mng1);
         fileMangment.add(1, file_mng2);
-       
+         // Assert (Verify that the file "Ideas.txt" has been created and contains expected content)
+        File ideasFile = new File("Ideas.txt");
+        assertTrue("File should exist", ideasFile.exists());
         // Act
         try {
             FileMangmant.writeOnFile(fileMangment);
         } catch (FileNotFoundException e) {
             e.printStackTrace(); // Handle the exception appropriately
         }
-
-        // Assert
-        // Verify that the file "Ideas.txt" has been created and contains expected content
-        File ideasFile = new File("Ideas.txt");
-        assertTrue("File should exist", ideasFile.exists());
-
+       
         // Read the content of the file
         try (Scanner scanner = new Scanner(ideasFile)) {
             // Perform assertions on the file content based on your expectations
