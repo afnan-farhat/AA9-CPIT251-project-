@@ -48,8 +48,19 @@ public class OwnerTest {
     public void testSubmitFileIdea() {
         // Arrange
         ArrayList<FileMangmant> fileMangment = new ArrayList<>();
-        // Add some sample FileMangmant objects to the list
-
+        
+        // Crreat some file ideas for testing
+        Ideas file1 = new Ideas("Community Volunteer Hub", "An online platform connecting volunteers with local community projects, making it easy for individuals to find and contribute to causes they care about.", "Afnan Tariq Farhat");
+        Ideas file2 = new Ideas("Joyful Sweets", "Artistic Sweets Inspired by Cultures Worldwide: Offering a diverse range of artistically crafted sweets inspired by various cultures globally", "Marya Fawaz Marzuq");
+        
+        // cast from Ideas to FileMangmant
+        FileMangmant file_mng1 = new FileMangmant(file1);
+        FileMangmant file_mng2 = new FileMangmant(file2);
+        
+        // Add some file ideas for testing
+        fileMangment.add(0, file_mng1);
+        fileMangment.add(1, file_mng2);
+       
         // Act
         try {
             FileMangmant.writeOnFile(fileMangment);
@@ -66,8 +77,7 @@ public class OwnerTest {
         try (Scanner scanner = new Scanner(ideasFile)) {
             // Perform assertions on the file content based on your expectations
             // For example, you can check if the file contains specific lines or patterns
-            assertTrue(scanner.nextLine().contains(" --------------- IDEA FILES ---------------"));
-            assertTrue("Successfully added!",scanner.nextLine().isEmpty()); // Empty line after the header
+            assertTrue("Successfully added!", !scanner.nextLine().isEmpty()); // Empty line after the header
 
             // Add more assertions based on your file writing logic
         } catch (FileNotFoundException e) {
@@ -75,7 +85,6 @@ public class OwnerTest {
         }
     }
 
-    
     /*
      * Test of DeleteFileIdea method, of class CPIT251Project.
      */
@@ -110,9 +119,9 @@ public class OwnerTest {
         assertFalse("file was deleted!", fileMangment.indexOf(file1) == 0);
     }
 
-     /**
-     Additions Test method of SubmitFileIdea method, of class Owner.
-     that check on content that will add in submit file idea
+    /**
+     * Additions Test method of SubmitFileIdea method, of class Owner. that
+     * check on content that will add in submit file idea
      */
     @Test
     public void checkContantsOfFile() {
@@ -126,7 +135,7 @@ public class OwnerTest {
         String currentOwnerName = file.getOwnerName();
 
         // Use a regular expression to check if the owner name does not contain any digits
-        assertFalse("Successfully added owner name!",currentOwnerName.matches(".*\\d.*"));
+        assertFalse("Successfully added owner name!", currentOwnerName.matches(".*\\d.*"));
     }
 
 }

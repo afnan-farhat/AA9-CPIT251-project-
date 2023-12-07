@@ -24,8 +24,8 @@ public class Staff extends Person{
         System.out.println("Successful added in accepted file");
 
         // Create a new file instance with the idea's details
-        //file = new Ideas(file.getIdeaName(), file.getDescription(),file.getOwnerName(), fileIdeas.get(indexFile).getFavoriteState(), fileIdeas.get(indexFile).getState());
-        fileIdea = new Ideas(fileIdea.getIdeaName(), fileIdea.getDescription(),fileIdea.getOwnerName(), fileIdea.getFavoriteState(), fileIdea.getState());
+        fileIdea = new Ideas(fileIdea.getIdeaName(), fileIdea.getDescription(),fileIdea.getOwnerName(),
+                fileIdea.getFavoriteState(), fileIdea.getState());
 
     }
 }

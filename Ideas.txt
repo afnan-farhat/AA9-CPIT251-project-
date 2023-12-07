@@ -1,3 +1,21 @@
  --------------- IDEA FILES ---------------
 
 
+The number of file: 1
+ ------------------------------------------
+Idea: Community Volunteer Hub
+description: An online platform connecting volunteers with local community projects, making it easy for individuals to find and contribute to causes they care about.
+Ownername: Afnan Tariq Farhat
+State: waiting
+Favorite: false
+
+
+The number of file: 2
+ ------------------------------------------
+Idea: Joyful Sweets
+description: Artistic Sweets Inspired by Cultures Worldwide: Offering a diverse range of artistically crafted sweets inspired by various cultures globally
+Ownername: Marya Fawaz Marzuq
+State: waiting
+Favorite: false
+
+

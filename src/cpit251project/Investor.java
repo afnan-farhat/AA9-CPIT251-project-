@@ -14,7 +14,8 @@ public class Investor {
         fileMangment.get(indexFile).ChangeFavoriteIdea();
 
         // Create a new file object with the updated information
-        fileIdea = new Ideas(fileIdea.getIdeaName(), fileIdea.getOwnerName(), fileIdea.getDescription(), fileIdea.getFavoriteState(), fileIdea.getState());
+        fileIdea = new Ideas(fileIdea.getIdeaName(), fileIdea.getOwnerName(), fileIdea.getDescription(), 
+                fileIdea.getFavoriteState(), fileIdea.getState());
 
     }
 

@@ -7,8 +7,6 @@ package cpit251project;
 
 //import static cpit251project.Main.SubmitFileIdea;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Owner extends Person {
