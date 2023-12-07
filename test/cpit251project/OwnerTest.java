@@ -85,7 +85,7 @@ public class OwnerTest {
 
         // Crreat some file ideas for testing
         Ideas file1 = new Ideas("Community Volunteer Hub", "An online platform connecting volunteers with local community projects, making it easy for individuals to find and contribute to causes they care about.", "Afnan Tariq Farhat");
-        Ideas file2 = new Ideas("Joyful Sweets", "Description2", "Marya Fawaz Marzuq");
+        Ideas file2 = new Ideas("Joyful Sweets", "Artistic Sweets Inspired by Cultures Worldwide: Offering a diverse range of artistically crafted sweets inspired by various cultures globally", "Marya Fawaz Marzuq");
         Ideas file3 = new Ideas("Language Learning Game", "A gamified language learning app that uses interactive games and quizzes to make the language learning process fun and engaging for users of all ages.", "Layan Salim Aljohani");
         Ideas file4 = new Ideas("VR Home Fitness", "A virtual reality fitness system for home use, providing immersive workouts in various virtual environments. It features AI-driven personalization, virtual trainers, and social connectivity for engaging exercise experiences.", "Ghada Mohmmed Alshehri");
 

@@ -1,12 +1,3 @@
  --------------- IDEA FILES ---------------
 
 
-The number of file: 1
- ------------------------------------------
-Idea: f
-description: f
-Ownername: f
-State: waiting
-Favorite: true
-
-
