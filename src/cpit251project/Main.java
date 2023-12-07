@@ -1,10 +1,9 @@
 package cpit251project;
 
-import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.PrintWriter;
+
 import java.util.ArrayList;
-import java.util.Arrays;
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -39,7 +38,8 @@ public class Main {
                 FileMangmant.writeOnFile(fileMangment);
                 System.exit(0);
             } else {
-                // Handle the default case if none of the specified conditions are met
+                // Handle InputMismatchException (non-integer input)
+                System.out.println("Invalid input. Please enter a valid integer.");
             }
 
         } while (!"".equals(job));// Continue looping until an empty string is entered
@@ -78,9 +78,11 @@ public class Main {
                 } else if (operationNum == 2) {
                     // If the user chooses to delete a file idea, invoke the DeleteFileIdea method
                     Owner.DeleteFileIdea(in, fileMangment);
-                } else {
+                } else if (operationNum == 3) {
                     // If the user chooses to quit the owner job, exit the loop
                     FileMangmant.Quite("owner");
+                } else {
+                    System.out.println("Error: Invalid number. Please try again.");
                 }
             } catch (InputMismatchException e) {
                 // Handle InputMismatchException (non-integer input)
@@ -106,9 +108,11 @@ public class Main {
                     if (operationNum == 1) {
                         // If the user chooses to add a file to favorites, invoke the AddFavoriteIdea method
                         Investor.AddFavoriteIdea(in, fileMangment, fileIdea);
-                    } else {
+                    } else if (operationNum == 2) {
                         // If the user chooses any other operation, exit the specified job
                         FileMangmant.Quite("investor");
+                    } else {
+                        System.out.println("Error: Invalid number. Please try again.");
                     }
                 } catch (InputMismatchException e) {
                     // Handle InputMismatchException (non-integer input)
@@ -136,9 +140,11 @@ public class Main {
                     if (operationNum == 1) {
                         // If the user chooses to change the idea state, invoke the Acceptance method
                         Staff.UpdateState(in, operationNum, fileIdea, fileMangment);
-                    } else {
+                    } else if (operationNum == 2) {
                         // If the user chooses to quit the staff job, exit the loop
                         FileMangmant.Quite("staff");
+                    } else {
+                        System.out.println("Error: Invalid number. Please try again.");
                     }
                 } catch (InputMismatchException e) {
                     // Handle InputMismatchException (non-integer input)
@@ -186,6 +192,5 @@ public class Main {
         System.out.print("> Please enter number of operation for STAFF: ");
 
     }
- 
 
 }
